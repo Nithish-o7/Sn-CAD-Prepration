@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ServiceNow CAD Prep</title>
+    <style>
+        /* --- DARK THEME STYLES --- */
+        body {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-size: 16px;
+        }
+
+        .container {
+            background-color: #2d2d2d;
+            padding: 40px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 850px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid #444;
+        }
+
+        /* HEADER STYLES */
+        h1 { margin-bottom: 8px; color: #ffffff; font-size: 32px; letter-spacing: -0.5px; }
+        .brand-green { color: #81B5A1; } /* ServiceNow Green */
+        
+        p.sub-head { color: #b0b0b0; margin-bottom: 40px; font-size: 18px; }
+
+        .hidden { display: none; }
+
+        /* DASHBOARD LIST VIEW */
+        .list-view {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 100%;
+        }
+        
+        .list-item {
+            background: #383838;
+            padding: 20px 25px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s, background 0.2s;
+            border-left: 6px solid #81B5A1; /* Green accent */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .list-item:hover { transform: translateX(5px); background: #444; }
+        
+        .list-info { text-align: left; }
+        .list-info h3 { margin: 0; font-size: 20px; color: #fff; font-weight: 600; }
+        .list-info p { margin: 6px 0 0 0; font-size: 14px; color: #bbb; }
+        
+        .start-btn {
+            padding: 10px 24px;
+            background: #2b7de9;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        
+        .start-btn:hover { background: #1a60c0; }
+
+        /* QUIZ INTERFACE */
+        .quiz-header {
+            background: #252525;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            border-bottom: 1px solid #444;
+            color: #81B5A1;
+        }
+
+        .question-box h2 {
+            font-size: 22px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            text-align: left;
+            font-weight: 500;
+            color: #f0f0f0;
+        }
+
+        .options-list { text-align: left; }
+
+        .option-item {
+            background: #383838;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+            font-size: 17px;
+            color: #ddd;
+        }
+
+        .option-item:hover { background: #484848; transform: translateY(-1px); }
+
+        /* STATES */
+        .option-item.selected {
+            background-color: #3b4d61; 
+            border-color: #4da3ff; 
+            color: white;
+        }
+        
+        .option-item.correct {
+            background-color: #1b4b2a !important; 
+            border-color: #2ecc71 !important;
+            color: white;
+        }
+        
+        .option-item.wrong {
+            background-color: #5c1e26 !important; 
+            border-color: #e74c3c !important;
+            color: white;
+        }
+
+        /* NAV BUTTONS */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 35px;
+        }
+        
+        .nav-btn {
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .nav-btn:hover { background-color: #666; }
+        
+        .nav-btn.primary { background-color: #2b7de9; }
+        .nav-btn.primary:hover { background-color: #1a60c0; }
+
+        .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        #submit-btn {
+            background-color: #2b7de9; 
+            color: white;
+            font-weight: bold;
+            display: none; 
+            margin-top: 20px;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.2s;
+        }
+        
+        #submit-btn:hover { background-color: #1a60c0; }
+
+        .footer-link { margin-top: 30px; font-size: 14px; border-top: 1px solid #444; padding-top: 20px; color: #888; }
+        .footer-link a { color: #81B5A1; text-decoration: none; font-weight: 500; }
+        .footer-link a:hover { text-decoration: underline; }
+
+        /* Custom Checkbox Style */
+        input[type="checkbox"] { accent-color: #2b7de9; transform: scale(1.2); margin-right: 8px; }
+
+    </style>
+</head>
+<body>
+
+    <div class="container" id="dashboard-view">
+        <h1><span class="brand-green">ServiceNow</span> CAD Preparation</h1>
+        <p class="sub-head">Select a Test to begin</p>
+        
+        <div class="list-view">
+            <div class="list-item">
+                <div class="list-info">
+                    <h3>Mock Test 1</h3>
+                    <p>44 Questions</p>
+                </div>
+                <button class="start-btn" onclick="startQuiz('mock1')">Start</button>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-info">
+                    <h3>Mock Test 2</h3>
+                    <p>45 Questions</p>
+                </div>
+                <button class="start-btn" onclick="startQuiz('mock2')">Start</button>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-info">
+                    <h3>Mock Test 3</h3>
+                    <p>45 Questions</p>
+                </div>
+                <button class="start-btn" onclick="startQuiz('mock3')">Start</button>
+            </div>
+        </div>
+
+        <div class="footer-link">
+            <label style="cursor:pointer; display:flex; align-items:center; justify-content:center;">
+                <input type="checkbox" id="jumble-check" checked> Randomize Answer Order
+            </label>
+        </div>
+    </div>
+
+    <div class="container hidden" id="quiz-view">
+        <div class="quiz-header">
+            <span id="q-progress">Q 1/10</span>
+            <span id="score-display">Score: 0</span>
+        </div>
+
+        <div class="question-box">
+            <h2 id="question-text">Loading...</h2>
+            <div class="options-list" id="options-container"></div>
+            <button id="submit-btn" onclick="submitMultiAnswer()">Submit Answer</button>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="prevQuestion()">Previous</button>
+            <button class="nav-btn primary next" onclick="nextQuestion()">Next</button>
+        </div>
+
+        <div class="footer-link">
+            <a href="#" onclick="location.reload()">⬅ Exit to Dashboard</a>
+        </div>
+    </div>
+
+    <script>
+        // ================= DATA SECTION =================
+        
+        const mock1Data = [
+            {"numb": 1, "question": "ServiceNow recommends keeping ______ separate to ensure stability and security.", "options": ["Development and Production Environments", "System Logs and User Data", "Incident Management and Problem Management", "On\u2011premise and Cloud Solutions"], "answer": "Development and Production Environments"},
+            {"numb": 2, "question": "The CMDB in ServiceNow is used to track and manage IT assets and configuration items.", "options": ["True", "False"], "answer": "True"},
+            {"numb": 3, "question": "Import Sets in ServiceNow can use ______ to transform data as it is imported.", "options": ["Transform Maps", "Workflow Scripts", "Business Rules", "UI Policies"], "answer": "Transform Maps"},
+            {"numb": 4, "question": "ServiceNow themes cannot be applied to individual applications, only to the entire instance.", "options": ["True", "False"], "answer": "False"},
+            {"numb": 5, "question": "What is the primary purpose of UI Builder in ServiceNow?", "options": ["To manage server-side logic", "To design and customize user interfaces", "To configure user roles and permissions", "To generate reports and analytics"], "answer": "To design and customize user interfaces"},
+            {"numb": 6, "question": "UI Builder provides a ______ interface for designing and customizing user interfaces in ServiceNow.", "options": ["Drag-and-drop", "Text-based", "Command-line", "Script-driven"], "answer": "Drag-and-drop"},
+            {"numb": 7, "question": "What is ServiceNow primarily used for?", "options": ["Video Editing", "Cloud Storage", "IT Service Management", "Graphic Design"], "answer": "IT Service Management"},
+            {"numb": 8, "question": "Which feature in ServiceNow helps automate workflows and processes?", "options": ["Service Portal", "Knowledge Management", "Flow Designer", "Reporting"], "answer": "Flow Designer"},
+            {"numb": 9, "question": "Which of the following are features of REST integration in ServiceNow?", "options": ["Stateless communication", "XML-based messaging", "CRUD operations", "Strong typing"], "answer": "CRUD operations"},
+            {"numb": 10, "question": "What is the first step in creating a custom user interface in UI Builder?", "options": ["Adding data sources", "Selecting a template", "Defining user roles", "Configuring event handlers"], "answer": "Selecting a template"},
+            {"numb": 11, "question": "The structure of ServiceNow instances includes Development, ______, and Production environments.", "options": ["Test", "Training", "Sandbox", "Demo"], "answer": "Test"},
+            {"numb": 12, "question": "Which of the following are advanced features of UI Builder?", "options": ["Custom theming", "Multi-page navigation", "Role-based access control", "Scheduled reporting"], "answer": "Custom theming"},
+            {"numb": 13, "question": "Which protocol is commonly used for REST integrations in ServiceNow?", "options": ["HTTP", "FTP", "SMTP", "SNMP"], "answer": "HTTP"},
+            {"numb": 14, "question": "In ServiceNow, the ______ environment should be the first place where new customizations and configurations are implemented.", "options": ["Development", "Production", "Test", "Staging"], "answer": "Development"},
+            {"numb": 15, "question": "______ integrations in ServiceNow use web services to allow applications to communicate over the internet.", "options": ["REST", "FTP", "SMTP", "SNMP"], "answer": "REST"},
+            {"numb": 16, "question": "Which of the following is NOT a pre-built component in UI Builder?", "options": ["Table", "Chart", "Script Editor", "Form"], "answer": "Script Editor"},
+            {"numb": 17, "question": "Portal pages in ServiceNow cannot be modified once they are published.", "options": ["True", "False"], "answer": "False"},
+            {"numb": 18, "question": "You cannot use custom code or scripting within UI Builder; it only supports pre-built components.", "options": ["True", "False"], "answer": "False"},
+            {"numb": 19, "question": "The ______ environment is used for day-to-day business operations.", "options": ["Production", "Development", "Testing", "Staging"], "answer": "Production"},
+            {"numb": 20, "question": "The ______ in ServiceNow is a framework for organizing configuration items (CIs) and their relationships.", "options": ["Configuration Management Database (CMDB)", "Incident Management System (IMS)", "Change Management Process (CMP)", "Knowledge Base (KB)"], "answer": "Configuration Management Database (CMDB)"},
+            {"numb": 21, "question": "Which components can be used to display data in UI Builder?", "options": ["Data visualization", "Text input", "Table", "Button"], "answer": ["Data visualization", "Table"]},
+            {"numb": 22, "question": "The ______ environment is used to build and test new features.", "options": ["Development", "Production", "Staging", "Training"], "answer": "Development"},
+            {"numb": 23, "question": "Advanced UI Builder features include ______ and ______, which allow for more tailored and complex interfaces.", "options": ["Conditional rendering and custom components", "Basic templates and custom components", "Static layouts and custom components", "Predefined themes and custom components"], "answer": "Conditional rendering and custom components"},
+            {"numb": 24, "question": "What is the primary purpose of the Configuration Management Database (CMDB) in ServiceNow?", "options": ["To store user credentials", "To manage configuration items (CIs)", "To schedule imports", "To create UI policies"], "answer": "To manage configuration items (CIs)"},
+            {"numb": 25, "question": "To display service catalog items on a portal page, you need to use ______.", "options": ["Service Catalog Widgets", "Data Sources", "User Roles", "Script Includes"], "answer": "Service Catalog Widgets"},
+            {"numb": 26, "question": "Which of the following is NOT a standard integration method in ServiceNow?", "options": ["REST", "SOAP", "FTP", "Email"], "answer": "FTP"},
+            {"numb": 27, "question": "Which environments are used for testing changes in ServiceNow? (Choose two)", "options": ["Production", "Development", "Test", "Sandbox"], "answer": ["Development", "Test"]},
+            {"numb": 28, "question": "To manage user access and permissions on a portal, you would use the ______ settings.", "options": ["Portal Configuration", "Customization settings", "Performance settings", "Design settings"], "answer": "Portal Configuration"},
+            {"numb": 29, "question": "The ______ provides a centralized place for users to request IT services and resources in ServiceNow.", "options": ["Service Catalog", "Incident Management", "Change Request", "Knowledge Base"], "answer": "Service Catalog"},
+            {"numb": 30, "question": "A ______ in ServiceNow is used to run server-side code at specified times or intervals.", "options": ["Scheduled Job", "UI Action", "Business Rule", "Client Script"], "answer": "Scheduled Job"},
+            {"numb": 31, "question": "Which environment is used for daily business activities?", "options": ["Production", "Sandbox", "Test", "Development"], "answer": "Production"},
+            {"numb": 32, "question": "Which of the following are types of tables in ServiceNow? (Select Two)", "options": ["Task Table", "Dictionary Table", "Incident Table", "System Table"], "answer": ["Task Table", "Incident Table"]},
+            {"numb": 33, "question": "What is an Import Set used for in ServiceNow?", "options": ["To create user interfaces", "To import data from external sources", "To manage server configurations", "To schedule tasks"], "answer": "To import data from external sources"},
+            {"numb": 34, "question": "What can you manage with the Common Service Data Model (CSDM) in ServiceNow?", "options": ["Business applications", "Service portfolios", "User permissions", "Technical services"], "answer": "Business applications"},
+            {"numb": 35, "question": "What are the benefits of using Import Sets in ServiceNow?", "options": ["Automates data import processes", "Supports data transformation", "Requires manual data entry", "Ensures data consistency"], "answer": "Supports data transformation"},
+            {"numb": 36, "question": "Which of the following are components of ServiceNow instance architecture? (Select Two)", "options": ["Application Server", "Database Server", "Web Browser", "Mobile Device"], "answer": ["Application Server", "Database Server"]},
+            {"numb": 37, "question": "The production instance is used for experimenting with new features.", "options": ["True", "False"], "answer": "False"},
+            {"numb": 38, "question": "The test instance is used to implement final changes directly into production.", "options": ["True", "False"], "answer": "False"},
+            {"numb": 39, "question": "In UI Builder, a ______ component is used to arrange other components within a layout.", "options": ["Container", "Data", "Button", "Icon"], "answer": "Container"},
+            {"numb": 40, "question": "SOAP integrations in ServiceNow typically use JSON format for message exchange.", "options": ["True", "False"], "answer": "False"},
+            {"numb": 41, "question": "Which ServiceNow tool is used for creating custom applications without coding?", "options": ["App Engine Studio", "Flow Designer", "Report Designer", "Virtual Agent"], "answer": "App Engine Studio"},
+            {"numb": 42, "question": "Which component is essential for laying out other components in UI Builder?", "options": ["Button", "Data visualization", "Text input", "Container"], "answer": "Container"},
+            {"numb": 43, "question": "Which of the following are steps to create a new widget in ServiceNow? (Select all that apply)", "options": ["Navigate to the Widget Editor", "Select 'Create New Widget'", "Configure the widget properties", "Publish the widget to the Service Catalog"], "answer": ["Navigate to the Widget Editor", "Select 'Create New Widget'", "Configure the widget properties"]},
+            {"numb": 44, "question": "Which of the following are benefits of using UI Builder in ServiceNow?", "options": ["Drag-and-drop interface", "Custom scripting capabilities", "Integration with external data sources", "Automated incident management"], "answer": "Drag-and-drop interface"}
+        ];
+
+        const mock2Data = [
+            {"numb": 1, "question": "JavaScript variables must be declared with the keyword 'var'.", "options": ["True", "False"], "answer": "False"},
+            {"numb": 2, "question": "What is ServiceNow primarily used for?", "options": ["Graphic design", "Social media management", "IT service management", "E-commerce"], "answer": "IT service management"},
+            {"numb": 3, "question": "In ServiceNow, a record is stored in a ________.", "options": ["Folder", "Spreadsheet", "Table", "Document"], "answer": "Table"},
+            {"numb": 4, "question": "In what phase of application development is App Engine Studio most useful?", "options": ["Design and development", "Deployment", "Maintenance", "Testing"], "answer": "Design and development"},
+            {"numb": 5, "question": "What are benefits of using application scopes in ServiceNow? (Select Two)", "options": ["Enhancing security", "Isolating application data", "Sharing data across all applications", "Reducing server load"], "answer": ["Enhancing security", "Isolating application data"]},
+            {"numb": 6, "question": "Workflows in ServiceNow automate processes and can be designed using the Workflow Editor.", "options": ["True", "False"], "answer": "True"},
+            {"numb": 7, "question": "Which table in ServiceNow is used to store incident records?", "options": ["incident_record", "incident", "incident_table", "incident_log"], "answer": "incident"},
+            {"numb": 8, "question": "Which statements are true about UI policies and data policies?", "options": ["Used for scripting server-side interactions", "Execute on the client-side", "Enforce data consistency rules and standards", "Control form field behavior based on field values"], "answer": ["Execute on the client-side", "Control form field behavior based on field values"]},
+            {"numb": 9, "question": "The Incident Management module in ServiceNow is used to handle ________.", "options": ["Incidents", "Employee payroll", "Financial transactions", "Product inventory management"], "answer": "Incidents"},
+            {"numb": 10, "question": "What are typical stages in the lifecycle of an application? (Select all that apply)", "options": ["Testing", "Customer support", "Planning", "Deployment"], "answer": ["Testing", "Planning", "Deployment"]},
+            {"numb": 11, "question": "____ in ServiceNow allow administrators to control access to tables, fields, and other application elements based on user roles.", "options": ["Workflow Activities", "Data Transformation Rules", "UI Policies", "Access Control Rules"], "answer": "Access Control Rules"},
+            {"numb": 12, "question": "What are the main scripting languages used in ServiceNow?", "options": ["JavaScript & Jelly", "Ruby & Perl", "Java and Python", "C# & PHP"], "answer": "JavaScript & Jelly"},
+            {"numb": 13, "question": "Why is scripting important in ServiceNow development?", "options": ["It simplifies user authentication", "It allows customization beyond out-of-the-box features", "It integrates with external databases", "It improves system performance"], "answer": ["It allows customization beyond out-of-the-box features", "It integrates with external databases"]},
+            {"numb": 14, "question": "ServiceNow ITSM includes modules for managing incidents and changes.", "options": ["True", "False"], "answer": "True"},
+            {"numb": 15, "question": "What can you use 'Page Structures' for in ServiceNow?", "options": ["To set user permissions", "To design server hardware", "To organize the layout of portal pages", "To create data tables"], "answer": "To organize the layout of portal pages"},
+            {"numb": 16, "question": "Which of the following can be created in the Incident Management module", "options": ["Financial reports", "Service requests", "User accounts", "Incident tickets"], "answer": ["Service requests", "Incident tickets"]},
+            {"numb": 17, "question": "Which of the following are features of the Change Management module in ServiceNow?", "options": ["Knowledge Base", "Change Request", "Change Calendar", "Risk Assessment"], "answer": ["Change Request", "Change Calendar"]},
+            {"numb": 18, "question": "Debugging server-side scripts in ServiceNow often involves reviewing __________ output for errors.", "options": ["Client Scripts", "System Logs", "UI Policies", "Data Import Sets"], "answer": "System Logs"},
+            {"numb": 19, "question": "Which components can you customize in a ServiceNow widget?", "options": ["Widget layout", "Widget data source", "Widget color scheme", "Widget title"], "answer": ["Widget layout", "Widget color scheme", "Widget title"]},
+            {"numb": 20, "question": "Client scripts in ServiceNow improve __________ by enabling __________ interactions.", "options": ["Reporting accuracy, Delayed", "Data security, Static", "System performance, Manual", "User experience, Dynamic"], "answer": "User experience, Dynamic"},
+            {"numb": 21, "question": "What is the primary purpose of the Incident Management module in ServiceNow?", "options": ["To manage software licenses", "To manage service requests", "To manage and resolve incidents", "To manage employee performance"], "answer": "To manage and resolve incidents"},
+            {"numb": 22, "question": "ServiceNow ITSM can only be used for IT-related services.", "options": ["True", "False"], "answer": "False"},
+            {"numb": 23, "question": "Which environment is App Engine Studio typically used in ServiceNow?", "options": ["Production", "Development", "Test", "Sandbox"], "answer": "Development"},
+            {"numb": 24, "question": "What can you use the 'Preview' feature for in the Widget Editor? (Select all that apply)", "options": ["To view changes made to the widget in real-time", "To test the widget functionality", "To access widget settings", "To publish the widget directly"], "answer": ["To view changes made to the widget in real-time", "To test the widget functionality"]},
+            {"numb": 25, "question": "UI policies in ServiceNow are used to control the behavior of form fields", "options": ["True", "False"], "answer": "True"},
+            {"numb": 26, "question": "When you create a new flow in Flow Designer, you must first define the __________ that will start the flow", "options": ["Action", "Script", "Condition", "Trigger"], "answer": "Trigger"},
+            {"numb": 27, "question": "The ____ in ServiceNow allows developers to customize the platform to meet specific business needs", "options": ["Service Portal", "Workflow Designer", "Incident Management", "Application Designer or Studio"], "answer": "Application Designer or Studio"},
+            {"numb": 28, "question": "A __________ in Flow Designer represents a set of related actions that can be executed together.", "options": ["Subflow", "Trigger", "Condition", "Task"], "answer": "Subflow"},
+            {"numb": 29, "question": "_____ are used in ServiceNow to enforce data consistency and integrity by defining rules that run when records are inserted, updated, or deleted.", "options": ["Client Scripts", "UI Policies", "Data Dictionaries", "Business Rules"], "answer": "Business Rules"},
+            {"numb": 30, "question": "What is Scripting in ServiceNow primarily used for?", "options": ["Generating reports", "All of the above", "Automating processes and workflows", "Managing user interfaces"], "answer": "All of the above"},
+            {"numb": 31, "question": "What is App Engine Studio used for in ServiceNow?", "options": ["Generating reports", "Managing user accounts", "Creating virtual machines", "Designing applications visually"], "answer": "Designing applications visually"},
+            {"numb": 32, "question": "What is a 'Widget' in ServiceNow?", "options": ["A database schema", "A component used to display content or functionality on a portal page", "A type of user role", "A tool for managing user accounts"], "answer": "A component used to display content or functionality on a portal page"},
+            {"numb": 33, "question": "The ________ module in ServiceNow helps in managing changes to IT services.", "options": ["Problem Management", "Knowledge Management", "Incident Management", "Change Management"], "answer": "Change Management"},
+            {"numb": 34, "question": "Which of the following modules is NOT a part of ServiceNow ITSM?", "options": ["Incident Management", "Problem Management", "Change Management", "Customer Relationship Management"], "answer": "Customer Relationship Management"},
+            {"numb": 35, "question": "What is GlideSystem in ServiceNow?", "options": ["A user interface framework", "An API for server-side operations", "A reporting tool", "A scripting language"], "answer": "An API for server-side operations"},
+            {"numb": 36, "question": "What is a client script in ServiceNow?", "options": ["A script that modifies database records", "A script that creates new tables", "A script that runs on the client machine", "A script that runs on the server machine"], "answer": "A script that runs on the client machine"},
+            {"numb": 37, "question": "What is the primary purpose of creating an application in ServiceNow?", "options": ["To update server software", "To manage incidents and requests", "To customize user profiles", "To schedule meetings"], "answer": "To manage incidents and requests"},
+            {"numb": 38, "question": "What is a 'Page Layout' in ServiceNow?", "options": ["A template for workflow processes", "The arrangement of content on a page", "A method for defining data access levels", "A way to configure system notifications"], "answer": "The arrangement of content on a page"},
+            {"numb": 39, "question": "What is the purpose of a 'Theme' in ServiceNow?", "options": ["To manage workflow processes", "To customize the appearance of portal pages", "To create user roles", "To define how data is stored"], "answer": "To customize the appearance of portal pages"},
+            {"numb": 40, "question": "To create a flow that runs on a schedule, you use the ________ trigger.", "options": ["Manual trigger", "Event-based trigger", "Approval trigger", "Scheduled trigger"], "answer": "Scheduled trigger"},
+            {"numb": 41, "question": "How do scripts interact with ServiceNow data?", "options": ["Via direct database connections", "By accessing Glide APIs", "Through SQL queries", "Using RESTful APIs"], "answer": "By accessing Glide APIs"},
+            {"numb": 42, "question": "What are the primary benefits of using ServiceNow ITSM? (Select all that apply)", "options": ["Improved service availability", "Enhanced customer satisfaction", "Better compliance", "Increased operational costs"], "answer": ["Improved service availability", "Enhanced customer satisfaction", "Better compliance"]},
+            {"numb": 43, "question": "Business Rules in ServiceNow are used to define automated actions based on conditions and can only be executed on server-side events.", "options": ["True", "False"], "answer": "False"},
+            {"numb": 44, "question": "Which tasks are involved in creating an application in ServiceNow? (Select Two)", "options": ["Configuring business rules", "Writing server code", "Designing user interface", "Sending emails to users"], "answer": ["Writing server code", "Designing user interface"]},
+            {"numb": 45, "question": "Scripting enhances ServiceNow functionalities by enabling __________ and __________.", "options": ["Automation, Hardware improvements", "Automation, Data storage", "Automation, Aesthetic designs", "Automation, Customisation"], "answer": "Automation, Customisation"}
+        ];
+
+        const mock3Data = [
+            {"numb": 1, "question": "Actions in ServiceNow Flow Designer execute specific ______ within the flow.", "options": ["Databases", "Plugins", "Schedules", "Tasks"], "answer": "Tasks"},
+            {"numb": 2, "question": "Actions cannot be reused in different subflows.", "options": ["TRUE", "FALSE"], "answer": "FALSE"},
+            {"numb": 3, "question": "What is a Subflow in ServiceNow?", "options": ["A module for creating reports", "A type of user role", "A visual element on the dashboard", "A workflow step that can be reused"], "answer": "A workflow step that can be reused"},
+            {"numb": 4, "question": "In the context of ServiceNow application development, what does the term 'Application Data Model' refer to?", "options": ["The layout and design of user interfaces", "The process of creating and managing UI Policies", "The structure and relationships of tables and fields", "The workflow design for handling business processes"], "answer": "The structure and relationships of tables and fields"},
+            {"numb": 5, "question": "Which of the following is NOT a client-side script type in ServiceNow?", "options": ["Client Script", "UI Policy", "Business Rule", "UI Action"], "answer": "Business Rule"},
+            {"numb": 6, "question": "Which of the following is NOT a key component of a flow in Flow Designer?", "options": ["Action", "Trigger", "Condition", "User Interface"], "answer": "User Interface"},
+            {"numb": 7, "question": "______ are a debugging tool in ServiceNow that help you track and fix issues in server-side scripts.", "options": ["Workflow Editors", "Script Debuggers", "UI Policies", "Client Scripts"], "answer": "Script Debuggers"},
+            {"numb": 8, "question": "What is the purpose of creating an Action in ServiceNow?", "options": ["To automate specific tasks or steps within a flow", "To design user interfaces", "To manage user roles", "To configure email notifications"], "answer": "To automate specific tasks or steps within a flow"},
+            {"numb": 9, "question": "Actions in Flow Designer are used to define the conditions under which a flow will execute.", "options": ["TRUE", "FALSE"], "answer": "FALSE"},
+            {"numb": 10, "question": "Which of the following can be used to automate a task when a record is inserted or updated?", "options": ["UI Action", "UI Policy", "Client Script", "Business Rule"], "answer": "Business Rule"},
+            {"numb": 11, "question": "The ______ defines the structure and relationships of tables and fields in an application.", "options": ["Script Include", "User interface", "Business Rule", "Data model"], "answer": "Data model"},
+            {"numb": 12, "question": "To automate repetitive tasks in ServiceNow, you can use ______ to trigger flows based on predefined conditions.", "options": ["Data Policies", "Scheduled Jobs", "UI Policies", "Flow Designer"], "answer": "Flow Designer"},
+            {"numb": 13, "question": "Which of the following are valid types of Client Scripts? (Select all that apply)", "options": ["onChange", "onLoad", "onClick", "onSubmit"], "answer": ["onChange", "onLoad", "onSubmit"]},
+            {"numb": 14, "question": "You can create reusable flow components in Flow Designer to streamline workflow development.", "options": ["FALSE", "TRUE"], "answer": "TRUE"},
+            {"numb": 15, "question": "Which of the following are types of client-side scripting in ServiceNow? (Select all that apply)", "options": ["UI Policy", "Business Rule", "Client Script", "Script Include"], "answer": ["UI Policy", "Client Script"]},
+            {"numb": 16, "question": "What is a primary benefit of using Subflows in ServiceNow?", "options": ["Increased manual processing", "Reusable components and reduced redundancy", "Complex setup requirements", "Manual tracking of changes"], "answer": "Reusable components and reduced redundancy"},
+            {"numb": 17, "question": "What are common uses for Script Includes in ServiceNow? (Select all that apply)", "options": ["Storing reusable server-side code", "Performing server-side calculations", "Managing client-side UI elements", "Scheduling regular tasks"], "answer": ["Storing reusable server-side code", "Performing server-side calculations"]},
+            {"numb": 18, "question": "Which feature allows you to define the starting point of a flow in Flow Designer?", "options": ["Script", "Action", "Condition", "Trigger"], "answer": "Trigger"},
+            {"numb": 19, "question": "A ______ in ServiceNow is used to run server-side code at specified times or intervals.", "options": ["UI Action", "Client Script", "Scheduled Job", "Business Rule"], "answer": "Scheduled Job"},
+            {"numb": 20, "question": "What are the components of an action step in ServiceNow?", "options": ["Data Transformation", "Script", "Notification Settings", "Conditions"], "answer": "Script"},
+            {"numb": 21, "question": "What can a Scheduled Job in ServiceNow be used for?", "options": ["To update UI policies", "To configure UI actions", "To run server-side scripts at specified times", "To create new user roles"], "answer": "To run server-side scripts at specified times"},
+            {"numb": 22, "question": "Advanced Flow Designer concepts include the use of conditions and loops to handle complex scenarios.", "options": ["FALSE", "TRUE"], "answer": "TRUE"},
+            {"numb": 23, "question": "______ Scripts are used to execute JavaScript code on the client side to manage form behavior and interactions.", "options": ["UI Policy", "Business", "Client", "Script Include"], "answer": "Client"},
+            {"numb": 24, "question": "Client Scripts are used to execute scripts on the ______ side.", "options": ["Server", "Database", "Client", "Middleware"], "answer": "Client"},
+            {"numb": 25, "question": "UI Policies allow you to dynamically change the behavior of form fields based on ______", "options": ["Conditions", "User roles", "Colors", "Field size"], "answer": "Conditions"},
+            {"numb": 26, "question": "Can a Subflow be used multiple times within different Flows?", "options": ["Yes, but only in the same Flow.", "No, each Subflow can only be used once", "No, Subflows are specific to one Flow only", "Yes, a Subflow can be reused in multiple Flows."], "answer": "Yes, a Subflow can be reused in multiple Flows."},
+            {"numb": 27, "question": "What can you include in a custom action to make it functional? (Select all that apply)", "options": ["External API Calls", "Script Logic", "Flow Variables", "Business Rules"], "answer": ["External API Calls", "Script Logic"]},
+            {"numb": 28, "question": "How can you test a flow you have designed in ServiceNow?", "options": ["By manually triggering it", "Through the service portal", "Using the Flow Designer test feature", "By publishing it directly"], "answer": "Using the Flow Designer test feature"},
+            {"numb": 29, "question": "What is the primary purpose of a Script Include in ServiceNow?", "options": ["To handle client-side validations", "To configure UI actions", "To execute server-side reusable code", "To manage user roles"], "answer": "To execute server-side reusable code"},
+            {"numb": 30, "question": "Business Rules are used to execute logic on the client side before a record is saved.", "options": ["TRUE", "FALSE"], "answer": "FALSE"},
+            {"numb": 31, "question": "What is Flow Designer used for in ServiceNow", "options": ["Managing databases", "Creating user interfaces", "Automating processes", "Generating reports"], "answer": "Automating processes"},
+            {"numb": 32, "question": "Which of the following are components of the Application Data Model in ServiceNow? (Select all that apply)", "options": ["Workflows", "Forms", "Fields", "Tables"], "answer": ["Fields", "Tables"]},
+            {"numb": 33, "question": "Which of the following are types of triggers in ServiceNow Flow Designer? (Select all that apply)", "options": ["Record-based", "Event-based", "User-based", "Schedule-based"], "answer": ["Record-based", "Schedule-based"]},
+            {"numb": 34, "question": "Which of the following is used to execute scripts on the client side in ServiceNow?", "options": ["Client Scripts", "Business Rules", "UI Actions", "Scheduled Jobs"], "answer": "Client Scripts"},
+            {"numb": 35, "question": "A trigger in ServiceNow Flow Designer is a predefined ______ that starts a flow.", "options": ["Action", "When it is met", "Event", "Variable"], "answer": "Event"},
+            {"numb": 36, "question": "What are common use cases for designing flows in ServiceNow? (Select all that apply)", "options": ["Managing network infrastructure", "Building web pages", "Automating HR processes", "IT service management"], "answer": ["Automating HR processes", "IT service management"]},
+            {"numb": 37, "question": "Which script type runs on the client side in ServiceNow?", "options": ["Script Include", "Business Rule", "Client Script", "Scheduled Job"], "answer": "Client Script"},
+            {"numb": 38, "question": "UI Policies can be used to control the visibility of fields based on user roles.", "options": ["TRUE", "FALSE"], "answer": "FALSE"},
+            {"numb": 39, "question": "What benefits do reusable actions and subflows offer in ServiceNow? (Select all that apply)", "options": ["Easier Maintenance", "Consistent Functionality", "Increased Complexity", "Reduced Development Time"], "answer": ["Easier Maintenance", "Consistent Functionality", "Reduced Development Time"]},
+            {"numb": 40, "question": "What can you typically do when debugging and troubleshooting scripts in ServiceNow? (Select all that apply)", "options": ["Use browser developer tools", "Use the Script Debugger", "Add logging statements", "Modify server hardware"], "answer": ["Use the Script Debugger", "Add logging statements"]},
+            {"numb": 41, "question": "Which of the following actions can be defined using UI Actions? (Select all that apply)", "options": ["Buttons", "Form Field Visibility", "Links", "Context Menu Items"], "answer": ["Buttons", "Links", "Context Menu Items"]},
+            {"numb": 42, "question": "Scheduled Jobs are used to run scripts on the client side at specified times.", "options": ["FALSE", "TRUE"], "answer": "FALSE"},
+            {"numb": 43, "question": "UI Policies are used to control the behavior of fields on a form in ServiceNow.", "options": ["TRUE", "FALSE"], "answer": "TRUE"},
+            {"numb": 44, "question": "What is the primary purpose of UI Policies in ServiceNow?", "options": ["To control the visibility and behavior of form fields based on conditions", "To automate tasks based on scheduled triggers", "To manage business logic on the server side", "To define data relationships and tables"], "answer": "To control the visibility and behavior of form fields based on conditions"},
+            {"numb": 45, "question": "Which type of actions can be included in a flow in Flow Designer?", "options": ["Script actions", "Record updates", "Email notifications", "All of the above"], "answer": "All of the above"}
+        ];
+
+        // ================= LOGIC SECTION =================
+
+        let currentQuizData = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let userAnswers = {};
+
+        function startQuiz(testId) {
+            // Select data
+            if(testId === 'mock1') currentQuizData = [...mock1Data];
+            else if(testId === 'mock2') currentQuizData = [...mock2Data];
+            else if(testId === 'mock3') currentQuizData = [...mock3Data];
+            
+            // Randomize if checked
+            const jumble = document.getElementById('jumble-check').checked;
+            if (jumble) {
+                currentQuizData = currentQuizData.sort(() => Math.random() - 0.5);
+                currentQuizData.forEach(q => {
+                    q.options = q.options.sort(() => Math.random() - 0.5);
+                });
+            }
+
+            // Reset State
+            currentQuestionIndex = 0;
+            score = 0;
+            userAnswers = {};
+
+            // Switch View
+            document.getElementById('dashboard-view').classList.add('hidden');
+            document.getElementById('quiz-view').classList.remove('hidden');
+            
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const q = currentQuizData[currentQuestionIndex];
+            const isMultiSelect = Array.isArray(q.answer);
+
+            // Update Header
+            document.getElementById('q-progress').innerText = `Q ${currentQuestionIndex + 1}/${currentQuizData.length}`;
+            document.getElementById('score-display').innerText = `Score: ${score}`;
+
+            // Set Question Text
+            let qText = q.question;
+            if (isMultiSelect) qText += " <br><small style='color:#00d4ff;'>(Select all that apply)</small>";
+            document.getElementById('question-text').innerHTML = qText;
+
+            // Render Options
+            const optionsDiv = document.getElementById('options-container');
+            optionsDiv.innerHTML = '';
+            
+            // Initialize User Answer Store if new
+            if (!userAnswers[currentQuestionIndex]) {
+                userAnswers[currentQuestionIndex] = isMultiSelect ? [] : null;
+            }
+
+            q.options.forEach(opt => {
+                const btn = document.createElement('div');
+                btn.className = 'option-item';
+                btn.innerText = opt;
+                btn.onclick = () => handleOptionClick(btn, opt, q.answer, isMultiSelect);
+
+                // Restore State (if returning to question)
+                const savedAns = userAnswers[currentQuestionIndex];
+                
+                // If question locked (already answered)
+                if (q.locked) {
+                    btn.style.pointerEvents = 'none';
+                    if (isMultiSelect) {
+                        if (q.answer.includes(opt)) btn.classList.add('correct');
+                        if (savedAns.includes(opt) && !q.answer.includes(opt)) btn.classList.add('wrong');
+                    } else {
+                        if (opt === q.answer) btn.classList.add('correct');
+                        if (savedAns === opt && opt !== q.answer) btn.classList.add('wrong');
+                    }
+                } else if (isMultiSelect && savedAns.includes(opt)) {
+                     btn.classList.add('selected');
+                }
+
+                optionsDiv.appendChild(btn);
+            });
+
+            // Handle Submit Button for Multi-Select
+            const subBtn = document.getElementById('submit-btn');
+            subBtn.style.display = (isMultiSelect && !q.locked) ? 'block' : 'none';
+
+            // Update Nav
+            document.querySelector('.prev').disabled = currentQuestionIndex === 0;
+            document.querySelector('.next').innerText = (currentQuestionIndex === currentQuizData.length - 1) ? "Finish" : "Next";
+        }
+
+        function handleOptionClick(elem, selectedOpt, correctAns, isMulti) {
+            const q = currentQuizData[currentQuestionIndex];
+            if (q.locked) return;
+
+            if (isMulti) {
+                // Toggle Selection
+                let current = userAnswers[currentQuestionIndex];
+                if (current.includes(selectedOpt)) {
+                    current = current.filter(x => x !== selectedOpt);
+                    elem.classList.remove('selected');
+                } else {
+                    current.push(selectedOpt);
+                    elem.classList.add('selected');
+                }
+                userAnswers[currentQuestionIndex] = current;
+            } else {
+                // Single Select - Immediate Grade
+                userAnswers[currentQuestionIndex] = selectedOpt;
+                q.locked = true;
+                
+                // Visuals
+                const allOpts = document.querySelectorAll('.option-item');
+                if (selectedOpt === correctAns) {
+                    score++;
+                    elem.classList.add('correct');
+                } else {
+                    elem.classList.add('wrong');
+                    allOpts.forEach(o => {
+                        if (o.innerText === correctAns) o.classList.add('correct');
+                    });
+                }
+                document.getElementById('score-display').innerText = `Score: ${score}`;
+                allOpts.forEach(o => o.style.pointerEvents = 'none');
+            }
+        }
+
+        function submitMultiAnswer() {
+            const q = currentQuizData[currentQuestionIndex];
+            const userAns = userAnswers[currentQuestionIndex];
+            const correctAns = q.answer;
+
+            q.locked = true;
+
+            // Grade: Arrays must match exactly (ignoring order)
+            const sortedUser = [...userAns].sort();
+            const sortedCorrect = [...correctAns].sort();
+            const isCorrect = JSON.stringify(sortedUser) === JSON.stringify(sortedCorrect);
+
+            if (isCorrect) score++;
+            
+            document.getElementById('score-display').innerText = `Score: ${score}`;
+            loadQuestion(); // Reload to show colors
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < currentQuizData.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                alert(`Quiz Finished! Final Score: ${score}/${currentQuizData.length}`);
+                location.reload();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
+
+    </script>
+</body>
+</html>
