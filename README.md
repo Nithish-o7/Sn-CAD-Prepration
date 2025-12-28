@@ -2,8 +2,6 @@
 
 ## 📂 Project Structure
 
-The project is organized to be clean and easy to maintain:
-
 ```text
 CAD-Preparation-Repo/
 │
