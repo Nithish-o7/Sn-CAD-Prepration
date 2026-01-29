@@ -11,18 +11,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* --- DARK BLUE THEME & MODERN STYLES --- */
+/* --- RESTORED DEFAULT THEME (SLATE & GREEN) --- */
 :root {
     --bg-gradient-start: #0f172a; 
     --bg-gradient-end: #1e293b;   
     --card-bg: #1e293b;
     --card-hover: #334155;
+    
+    /* ServiceNow Brand Colors */
     --brand-green: #81B5A1;       
     --brand-green-hover: #5e8e7b;
     --brand-dark: #293E40;
+    
     --text-primary: #f1f5f9;
     --text-secondary: #94a3b8;
     --border-color: #334155;
+    
+    /* Status Colors */
     --correct-bg: rgba(16, 185, 129, 0.2);
     --correct-border: #10b981;
     --wrong-bg: rgba(239, 68, 68, 0.2);
@@ -58,8 +63,26 @@ body {
     z-index: 10;
 }
 
-h1 { margin-bottom: 8px; color: #ffffff; font-size: 32px; letter-spacing: -0.5px; font-weight: 700; }
-h2.section-title { color: var(--brand-green); font-size: 20px; margin: 35px 0 20px 0; text-align: left; border-bottom: 2px solid var(--border-color); padding-bottom: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+h1 { 
+    margin-bottom: 8px; 
+    color: #ffffff; 
+    font-size: 32px; 
+    letter-spacing: -0.5px; 
+    font-weight: 700;
+}
+
+h2.section-title { 
+    color: var(--brand-green); 
+    font-size: 20px; 
+    margin: 35px 0 20px 0; 
+    text-align: left; 
+    border-bottom: 2px solid var(--border-color); 
+    padding-bottom: 12px; 
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 .brand-green { color: var(--brand-green); } 
 p.sub-head { color: var(--text-secondary); margin-bottom: 45px; font-size: 16px; font-weight: 300; }
 .hidden { display: none !important; }
@@ -73,8 +96,8 @@ p.sub-head { color: var(--text-secondary); margin-bottom: 45px; font-size: 16px;
 .list-info h3 { margin: 0; font-size: 18px; color: #fff; font-weight: 600; }
 .list-info p { margin: 4px 0 0 0; font-size: 13px; color: var(--text-secondary); }
 
-.start-btn { padding: 8px 24px; background: linear-gradient(135deg, var(--brand-green), var(--brand-green-hover)); color: #fff; border: none; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: 600; transition: transform 0.2s; }
-.start-btn:hover { transform: scale(1.05); }
+.start-btn { padding: 8px 24px; background: linear-gradient(135deg, var(--brand-green), var(--brand-green-hover)); color: #fff; border: none; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: 600; transition: transform 0.2s; box-shadow: 0 4px 15px rgba(129, 181, 161, 0.2); }
+.start-btn:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(129, 181, 161, 0.4); }
 
 /* QUIZ INTERFACE */
 .quiz-header { background: #0f172a; padding: 15px 25px; border-radius: 16px; font-size: 15px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; border: 1px solid var(--border-color); color: var(--brand-green); }
@@ -142,15 +165,15 @@ p.sub-head { color: var(--text-secondary); margin-bottom: 45px; font-size: 16px;
     <h2 class="section-title">Mock Tests</h2>
     <div class="list-view">
         <div class="list-item">
-            <div class="list-info"><h3>Mock Test 1</h3><p>45 Questions</p></div>
+            <div class="list-info"><h3>Mock Test 1</h3><p>45 Exam Questions</p></div>
             <button class="start-btn" onclick="startQuiz('mock1')">Start</button>
         </div>
         <div class="list-item">
-            <div class="list-info"><h3>Mock Test 2</h3><p>45 Questions</p></div>
+            <div class="list-info"><h3>Mock Test 2</h3><p>45 Exam Questions</p></div>
             <button class="start-btn" onclick="startQuiz('mock2')">Start</button>
         </div>
         <div class="list-item">
-            <div class="list-info"><h3>Mock Test 3</h3><p>45 Questions</p></div>
+            <div class="list-info"><h3>Mock Test 3</h3><p>45 Exam Questions</p></div>
             <button class="start-btn" onclick="startQuiz('mock3')">Start</button>
         </div>
         <div class="list-item" style="border-left-color: #fff;">
@@ -162,22 +185,18 @@ p.sub-head { color: var(--text-secondary); margin-bottom: 45px; font-size: 16px;
     <h2 class="section-title">Other MCQs</h2>
     <div class="list-view">
         <div class="list-item">
-            <div class="list-info"><h3>Set 1</h3><p>30 Questions</p></div>
+            <div class="list-info"><h3>Set 1</h3><p>30 Concept Questions</p></div>
             <button class="start-btn" onclick="startQuiz('other1')">Start</button>
         </div>
         <div class="list-item">
-            <div class="list-info"><h3>Set 2</h3><p>30 Questions</p></div>
+            <div class="list-info"><h3>Set 2</h3><p>30 Deep Dive Questions</p></div>
             <button class="start-btn" onclick="startQuiz('other2')">Start</button>
-        </div>
-        <div class="list-item" style="border-left-color: #fff;">
-            <div class="list-info"><h3 style="color:#ffffff;">Study All Other Sets</h3><p>Full Reference</p></div>
-            <button class="start-btn" style="background: #334155;" onclick="startOtherStudyMode()">View</button>
         </div>
     </div>
 
     <div class="footer-link">
         <label style="cursor:pointer; display:flex; align-items:center; justify-content:center; gap:10px;">
-            <input type="checkbox" id="jumble-check" checked style="transform:scale(1.3);"> Randomize Answer Order
+            <input type="checkbox" id="jumble-check" checked style="transform:scale(1.3); accent-color: var(--brand-green);"> Randomize Answer Order
         </label>
     </div>
 </div>
@@ -210,7 +229,7 @@ p.sub-head { color: var(--text-secondary); margin-bottom: 45px; font-size: 16px;
     <div class="footer-link"><a href="#" onclick="location.reload()">⬅ Exit to Dashboard</a></div>
 </div>
 
-<!-- NAVIGATOR MODAL -->
+<!-- MODALS -->
 <div id="nav-modal" class="modal-overlay hidden" onclick="if(event.target === this) closeNavModal()">
     <div class="modal-content">
         <h3 style="color:var(--brand-green);">Question Navigator</h3>
@@ -219,7 +238,6 @@ p.sub-head { color: var(--text-secondary); margin-bottom: 45px; font-size: 16px;
     </div>
 </div>
 
-<!-- RESULTS MODAL -->
 <div id="results-modal" class="modal-overlay hidden">
     <div class="modal-content">
         <h2>Quiz Completed!</h2>
@@ -233,7 +251,6 @@ p.sub-head { color: var(--text-secondary); margin-bottom: 45px; font-size: 16px;
     </div>
 </div>
 
-<!-- STUDY VIEW -->
 <div class="container hidden" id="study-view">
     <div class="quiz-header"><span>Study Mode</span><button class="nav-btn" onclick="location.reload()">Close</button></div>
     <div class="search-container"><input type="text" id="study-search" class="search-input" placeholder="Search questions..." onkeyup="filterStudyQuestions()"></div>
@@ -241,26 +258,216 @@ p.sub-head { color: var(--text-secondary); margin-bottom: 45px; font-size: 16px;
 </div>
 
 <script>
-// Mock Data (Shortened for brevity here, but logic applies to full data)
+// Mock Data (Full Sets Included)
 const mock1Data = [
 {"numb": 1, "question": "ServiceNow recommends keeping ______ separate to ensure stability and security.", "options": ["Development and Production Environments", "System Logs and User Data", "Incident Management and Problem Management", "On\u2011premise and Cloud Solutions"], "answer": "Development and Production Environments"},
-{"numb": 2, "question": "The CMDB in ServiceNow is used to track and manage IT assets and configuration items.", "options": ["True", "False"], "answer": "True"},
-{"numb": 3, "question": "Import Sets in ServiceNow can use ______ to transform data as it is imported.", "options": ["Transform Maps", "Workflow Scripts", "Business Rules", "UI Policies"], "answer": "Transform Maps"},
-{"numb": 4, "question": "ServiceNow themes cannot be applied to individual applications, only to the entire instance.", "options": ["True", "False"], "answer": "False"},
-{"numb": 5, "question": "What is the primary purpose of UI Builder in ServiceNow?", "options": ["To manage server-side logic", "To design and customize user interfaces", "To configure user roles and permissions", "To generate reports and analytics"], "answer": "To design and customize user interfaces"},
-{"numb": 6, "question": "UI Builder provides a ______ interface for designing and customizing user interfaces in ServiceNow.", "options": ["Drag-and-drop", "Text-based", "Command-line", "Script-driven"], "answer": "Drag-and-drop"},
-{"numb": 7, "question": "What is ServiceNow primarily used for?", "options": ["Video Editing", "Cloud Storage", "IT Service Management", "Graphic Design"], "answer": "IT Service Management"},
-{"numb": 8, "question": "Which feature in ServiceNow helps automate workflows and processes?", "options": ["Service Portal", "Knowledge Management", "Flow Designer", "Reporting"], "answer": "Flow Designer"},
-{"numb": 9, "question": "Which of the following are features of REST integration in ServiceNow?", "options": ["Stateless communication", "XML-based messaging", "CRUD operations", "Strong typing"], "answer": "CRUD operations"},
-{"numb": 10, "question": "What is the first step in creating a custom user interface in UI Builder?", "options": ["Adding data sources", "Selecting a template", "Defining user roles", "Configuring event handlers"], "answer": "Selecting a template"}
-// ... Full data would go here
+{"numb": 2, "question": "Which of the following is true for a Script Include with a 'Client callable' checkbox selected?", "options": ["It can be used by Client Scripts and UI Policies", "It must extend the AbstractAjaxProcessor class", "It cannot use GlideRecord", "It executes on the client-side"], "answer": "It must extend the AbstractAjaxProcessor class"},
+{"numb": 3, "question": "When creating a table, what is the purpose of the 'Extends table' field?", "options": ["To duplicate the data of the parent table", "To inherit fields and logic from a parent table", "To link two tables via a Many-to-Many relationship", "To allow only the parent table to see the new data"], "answer": "To inherit fields and logic from a parent table"},
+{"numb": 4, "question": "Which of the following classes is used to get information about the currently logged-in user in a server-side script?", "options": ["g_user", "gs", "GlideUser", "current.user"], "answer": "gs"},
+{"numb": 5, "question": "What is the primary purpose of UI Builder in ServiceNow?", "options": ["To manage server-side logic", "To design and customize user interfaces in Workspaces and Portals", "To configure user roles and permissions", "To generate reports and analytics"], "answer": "To design and customize user interfaces in Workspaces and Portals"},
+{"numb": 6, "question": "Which module allows developers to create and manage application files in a dedicated interface?", "options": ["App Engine Studio", "ServiceNow Studio", "Workflow Editor", "UI Builder"], "answer": "ServiceNow Studio"},
+{"numb": 7, "question": "What are the two types of Business Rules? (Choose two)", "options": ["Client-side", "Async", "Before", "UI Policy"], "answer": ["Async", "Before"]},
+{"numb": 8, "question": "Which method is used to add a filter to a GlideRecord query?", "options": ["addQuery()", "setFilter()", "applyCondition()", "where()"], "answer": "addQuery()"},
+{"numb": 9, "question": "In Flow Designer, what is an 'Action'?", "options": ["A reusable operation that performs a specific task", "A trigger that starts the flow", "A script that runs on the browser", "A notification sent to a user"], "answer": "A reusable operation that performs a specific task"},
+{"numb": 10, "question": "What is the correct syntax for a Client Script to get the value of a field?", "options": ["g_form.getValue('field_name')", "current.field_name", "g_form.field_name.value", "gs.getProperty('field_name')"], "answer": "g_form.getValue('field_name')"},
+{"numb": 11, "question": "Which of the following can be used to limit who can see an application in the navigator?", "options": ["ACLs", "Roles", "UI Policies", "Client Scripts"], "answer": "Roles"},
+{"numb": 12, "question": "A developer wants to run a script when a user changes a value in a form field. Which Client Script type should be used?", "options": ["onLoad", "onSubmit", "onChange", "onCellEdit"], "answer": "onChange"},
+{"numb": 13, "question": "Which of the following is NOT a valid trigger type in Flow Designer?", "options": ["Record-based", "Schedule-based", "Application-based", "Script-based"], "answer": "Script-based"},
+{"numb": 14, "question": "Which ServiceNow API provides methods for working with dates and times in server-side scripts?", "options": ["GlideDateTime", "GlideDate", "GlideTime", "All of the above"], "answer": "All of the above"},
+{"numb": 15, "question": "What is an Application Scope?", "options": ["A way to define user permissions", "A boundary that protects an application from interference by other applications", "A set of roles for an application", "A UI theme for an application"], "answer": "A boundary that protects an application from interference by other applications"},
+{"numb": 16, "question": "Which of the following methods allows you to insert a record into the database using GlideRecord?", "options": ["update()", "save()", "insert()", "submit()"], "answer": "insert()"},
+{"numb": 17, "question": "How do you call a server-side Script Include from a Client Script?", "options": ["GlideAjax", "gs.include()", "g_form.getScript()", "AJAXProcessor"], "answer": "GlideAjax"},
+{"numb": 18, "question": "Which record is used to define a custom web service endpoint in ServiceNow?", "options": ["Scripted REST API", "REST Message", "Outbound SOAP Message", "IntegrationHub Action"], "answer": "Scripted REST API"},
+{"numb": 19, "question": "What does ATF stand for in ServiceNow?", "options": ["Automated Testing Framework", "Application Task Flow", "Automated Task Finder", "Advanced Testing Function"], "answer": "Automated Testing Framework"},
+{"numb": 20, "question": "Which method is used to display an error message at the top of a form in a Client Script?", "options": ["g_form.showError()", "g_form.addErrorMessage()", "g_form.showFieldMsg()", "alert()"], "answer": "g_form.addErrorMessage()"},
+{"numb": 21, "question": "In an Access Control Rule (ACL), which of the following is evaluated first?", "options": ["Role", "Condition", "Script", "They are all evaluated simultaneously"], "answer": "Role"},
+{"numb": 22, "question": "What is the name of the object used in Business Rules to access the current record's data?", "options": ["g_form", "previous", "current", "record"], "answer": "current"},
+{"numb": 23, "question": "A developer wants to make a field mandatory on a form. Which is the best practice for this?", "options": ["UI Policy", "Client Script", "Business Rule", "ACL"], "answer": "UI Policy"},
+{"numb": 24, "question": "Which of the following is a server-side script?", "options": ["Client Script", "UI Action (Client checked)", "Business Rule", "UI Policy"], "answer": "Business Rule"},
+{"numb": 25, "question": "In Flow Designer, what is used to pass data between actions?", "options": ["Data Pills", "Variables", "Scratchpad", "Script Includes"], "answer": "Data Pills"},
+{"numb": 26, "question": "What is the purpose of the 'coalesce' field in an Import Set transform map?", "options": ["To combine two fields into one", "To uniquely identify a record for updates", "To ignore empty fields during import", "To encrypt sensitive data"], "answer": "To uniquely identify a record for updates"},
+{"numb": 27, "question": "Which tool is used to create automated workflows without writing code?", "options": ["Workflow Editor", "Flow Designer", "UI Builder", "Studio"], "answer": "Flow Designer"},
+{"numb": 28, "question": "What happens if no ACL is defined for a table?", "options": ["Everyone can access it", "Nobody can access it (security by default)", "Only admins can access it", "Only the owner can access it"], "answer": "Nobody can access it (security by default)"},
+{"numb": 29, "question": "Which method is used to prevent a Business Rule from running further scripts or updates?", "options": ["setAbortAction(true)", "stopExecution()", "cancelUpdate()", "end()"], "answer": "setAbortAction(true)"},
+{"numb": 30, "question": "Where do you define the fields that appear in a Service Portal widget's options?", "options": ["Widget Editor", "Option Schema", "Client Script", "Server Script"], "answer": "Option Schema"},
+{"numb": 31, "question": "What is the primary language used for ServiceNow scripting?", "options": ["Python", "Java", "JavaScript", "C#"], "answer": "JavaScript"},
+{"numb": 32, "question": "Which method is used to send an event to the Event Queue from a script?", "options": ["gs.eventQueue()", "gs.sendEvent()", "gs.queue()", "current.event()"], "answer": "gs.eventQueue()"},
+{"numb": 33, "question": "What are UI Actions?", "options": ["Scripts that run on form load", "Buttons, links, or context menu items on a form/list", "Rules that make fields mandatory", "A way to define table relationships"], "answer": "Buttons, links, or context menu items on a form/list"},
+{"numb": 34, "question": "Which component allows you to group multiple applications together for navigation?", "options": ["Application Menu", "Module", "UI Page", "Workspace"], "answer": "Application Menu"},
+{"numb": 35, "question": "What is the 'g_scratchpad' object used for?", "options": ["To store client-side variables temporarily", "To pass data from a server-side Display Business Rule to a Client Script", "To write temporary notes in a script", "To debug GlideAjax calls"], "answer": "To pass data from a server-side Display Business Rule to a Client Script"},
+{"numb": 36, "question": "What is the standard format for exchanging data with ServiceNow REST APIs?", "options": ["XML", "CSV", "JSON", "Plain Text"], "answer": "JSON"},
+{"numb": 37, "question": "Which method in g_form is used to hide a field on a form?", "options": ["setVisible('field', false)", "setDisplay('field', false)", "hideField('field')", "Both setVisible and setDisplay"], "answer": "Both setVisible and setDisplay"},
+{"numb": 38, "question": "What is a 'Protection Policy' on a Script Include used for?", "options": ["To prevent users from editing the script", "To protect intellectual property when an app is installed from the Store", "To encrypt the script in the database", "To allow only admins to see the code"], "answer": "To protect intellectual property when an app is installed from the Store"},
+{"numb": 39, "question": "Which table stores all the configuration records for an application?", "options": ["sys_metadata", "sys_app", "sys_config", "sys_dictionary"], "answer": "sys_metadata"},
+{"numb": 40, "question": "Which of the following can be used to debug a Client Script?", "options": ["gs.log()", "console.log()", "gs.print()", "All of the above"], "answer": "console.log()"},
+{"numb": 41, "question": "When using GlideAjax, which method is used to send the request to the server?", "options": ["getXML()", "send()", "execute()", "get()"], "answer": "getXML()"},
+{"numb": 42, "question": "What is the maximum number of fields a table can have in ServiceNow?", "options": ["500", "1000", "There is no hard limit, but performance should be considered", "255"], "answer": "There is no hard limit, but performance should be considered"},
+{"numb": 43, "question": "Which property in a table definition allows it to be used as a source for an Import Set?", "options": ["Extends Table", "Importable", "No property, you just create an Import Set Table", "Allow configuration"], "answer": "No property, you just create an Import Set Table"},
+{"numb": 44, "question": "What is the purpose of the 'sys_id' field?", "options": ["To store the user's ID", "A unique 32-character GUID for every record", "To store the application ID", "A reference to the system table"], "answer": "A unique 32-character GUID for every record"},
+{"numb": 45, "question": "Which of the following is true for Global scope applications?", "options": ["They have access to all tables by default", "They are strictly isolated from other apps", "They cannot use GlideRecord", "They are only for system use"], "answer": "They have access to all tables by default"}
 ];
-// Full data blocks (mock2Data, mock3Data, other1, other2) would be identical to your original source.
-// I've kept logic focused on your specific request.
-const mock2Data = [{"numb": 1, "question": "JavaScript variables must be declared with the keyword 'var'.", "options": ["True", "False"], "answer": "False"}];
-const mock3Data = [{"numb": 1, "question": "Actions in ServiceNow Flow Designer execute specific tasks.", "options": ["True", "False"], "answer": "True"}];
-const otherMcqSet1Data = [{"question": "What does coalesce mean?", "options": ["Match", "Ignore"], "answer": "Match"}];
-const otherMcqSet2Data = [{"question": "Is ServiceNow cloud based?", "options": ["Yes", "No"], "answer": "Yes"}];
+
+const mock2Data = [
+{"numb": 1, "question": "What is the primary benefit of developing applications in a Scoped environment?", "options": ["Faster execution", "Easier deployment", "Prevention of conflicts with other applications", "Better UI design"], "answer": "Prevention of conflicts with other applications"},
+{"numb": 2, "question": "Which of the following is used to trigger a workflow or flow when a record changes?", "options": ["Business Rule", "Client Script", "UI Policy", "Data Policy"], "answer": "Business Rule"},
+{"numb": 3, "question": "What is a Service Portal widget?", "options": ["A reusable component that makes up a portal page", "A button on a form", "A scheduled job", "An external integration endpoint"], "answer": "A reusable component that makes up a portal page"},
+{"numb": 4, "question": "How do you access the value of a system property in a server-side script?", "options": ["gs.getProperty('prop_name')", "g_form.getProperty('prop_name')", "current.prop_name", "sys_properties.get('prop_name')"], "answer": "gs.getProperty('prop_name')"},
+{"numb": 5, "question": "Which of the following can a UI Policy do? (Choose all that apply)", "options": ["Make a field mandatory", "Hide a field", "Execute a GlideRecord query", "Make a field read-only"], "answer": ["Make a field mandatory", "Hide a field", "Make a field read-only"]},
+{"numb": 6, "question": "What is the purpose of the 'Update Set'?", "options": ["To backup data", "To move configurations from one instance to another", "To update the ServiceNow version", "To manage user passwords"], "answer": "To move configurations from one instance to another"},
+{"numb": 7, "question": "Which method is used in a Client Script to check if the current user has a specific role?", "options": ["g_user.hasRole()", "gs.hasRole()", "g_form.hasRole()", "current.user.hasRole()"], "answer": "g_user.hasRole()"},
+{"numb": 8, "question": "What does a 'Display' Business Rule do?", "options": ["Runs after a record is saved", "Runs when a record is loaded into a form", "Runs every 10 minutes", "Displays a message to the user"], "answer": "Runs when a record is loaded into a form"},
+{"numb": 9, "question": "Which of the following is NOT a type of UI Action?", "options": ["Form button", "Banner button", "Client Script", "List choice"], "answer": "Client Script"},
+{"numb": 10, "question": "What is the use of the 'Guided Application Creator'?", "options": ["To build complex integrations", "A step-by-step wizard to set up a new application", "To design custom themes", "To manage system logs"], "answer": "A step-by-step wizard to set up a new application"},
+{"numb": 11, "question": "In a Business Rule, what does 'current.isNewRecord()' check?", "options": ["If the record has been updated", "If the record is being inserted for the first time", "If the record is from a new user", "If the table is empty"], "answer": "If the record is being inserted for the first time"},
+{"numb": 12, "question": "Which API is used for making outbound REST calls in ServiceNow?", "options": ["RESTMessageV2", "GlideAjax", "HttpClient", "OutboundREST"], "answer": "RESTMessageV2"},
+{"numb": 13, "question": "What is a 'Record Producer'?", "options": ["A user role", "A Service Catalog item used to create a record on a non-catalog table", "A script that generates reports", "A tool for bulk importing data"], "answer": "A Service Catalog item used to create a record on a non-catalog table"},
+{"numb": 14, "question": "Which field on a form is usually the 'Display' value for reference fields?", "options": ["sys_id", "Short description", "The field with the 'Display' checkbox checked in the dictionary", "The name field"], "answer": "The field with the 'Display' checkbox checked in the dictionary"},
+{"numb": 15, "question": "Which of the following can be used to run a script every night at midnight?", "options": ["Scheduled Script Execution", "Business Rule", "Client Script", "UI Policy"], "answer": "Scheduled Script Execution"},
+{"numb": 16, "question": "What is the difference between 'gs.log()' and 'gs.info()'?", "options": ["gs.log only works in Global scope", "gs.info only works in Global scope", "gs.log is for client scripts", "There is no difference"], "answer": "gs.log only works in Global scope"},
+{"numb": 17, "question": "In Service Portal, what language is used for the client-side controller of a widget?", "options": ["React", "AngularJS", "Vue", "jQuery"], "answer": "AngularJS"},
+{"numb": 18, "question": "What is the 'Dictionary Override' used for?", "options": ["To delete a field", "To change a field's properties on a child table without affecting the parent", "To rename a table", "To override system permissions"], "answer": "To change a field's properties on a child table without affecting the parent"},
+{"numb": 19, "question": "Which of the following is true for Async Business Rules?", "options": ["They run on the browser", "They run in the background after the record is saved", "They run before the database is updated", "They cannot access 'current'"], "answer": "They run in the background after the record is saved"},
+{"numb": 20, "question": "How can you view the logs produced by 'gs.info()'?", "options": ["System Logs > All", "System Logs > App Log", "Stats.do", "JavaScript Debugger"], "answer": "System Logs > App Log"},
+{"numb": 21, "question": "What is the purpose of the 'Application Repository'?", "options": ["To store local code", "To publish and share applications between instances in a company", "To download third-party apps", "To manage database backups"], "answer": "To publish and share applications between instances in a company"},
+{"numb": 22, "question": "Which of the following describes 'Delegated Development'?", "options": ["Giving users roles to build apps without full admin rights", "Hiring a third party to develop an app", "Using AI to write scripts", "Moving development to a production instance"], "answer": "Giving users roles to build apps without full admin rights"},
+{"numb": 23, "question": "What is a 'Data Pill' in Flow Designer?", "options": ["A script include", "A visual representation of a data variable from a previous step", "An encryption tool", "A database record"], "answer": "A visual representation of a data variable from a previous step"},
+{"numb": 24, "question": "What is the purpose of the 'sys_user' table?", "options": ["To store application settings", "To store user profile information", "To manage user roles", "To log user activities"], "answer": "To store user profile information"},
+{"numb": 25, "question": "Which tool would you use to test a Scripted REST API endpoint?", "options": ["REST API Explorer", "Flow Designer", "Studio", "UI Builder"], "answer": "REST API Explorer"},
+{"numb": 26, "question": "Which of the following is a key feature of IntegrationHub?", "options": ["Building UI pages", "Connecting ServiceNow to third-party systems using Spokes", "Managing internal database tables", "Running client-side tests"], "answer": ["Connecting ServiceNow to third-party systems using Spokes"]},
+{"numb": 27, "question": "What does the 'canWrite()' method do in GlideRecord?", "options": ["Checks if the current user has write access to the record", "Writes the record to the database", "Checks if the field is mandatory", "Enables the submit button"], "answer": "Checks if the current user has write access to the record"},
+{"numb": 28, "question": "What is the function of the 'Scratchpad' in a Business Rule?", "options": ["To pass data between client and server", "To store temporary script logic", "To debug server-side code", "To create new tables"], "answer": "To pass data between client and server"},
+{"numb": 29, "question": "Which module allows you to view all Business Rules in the system?", "options": ["System Definition > Business Rules", "System Definition > Scripts", "System UI > Rules", "System Security > Rules"], "answer": "System Definition > Business Rules"},
+{"numb": 30, "question": "What is the 'Primary Key' for every ServiceNow table?", "options": ["name", "sys_id", "number", "user_id"], "answer": "sys_id"},
+{"numb": 31, "question": "How do you add a UI Action button to the mobile app?", "options": ["It is automatic", "Check the 'Mobile' checkbox", "Use the 'Mobile App' UI Action record", "UI Actions don't work on mobile"], "answer": "Check the 'Mobile' checkbox"},
+{"numb": 32, "question": "What is a 'Reference Qualifier'?", "options": ["A way to filter the records available in a reference field", "A user role", "A type of table relationship", "A security rule"], "answer": "A way to filter the records available in a reference field"},
+{"numb": 33, "question": "Which of the following can be used in a Scoped application?", "options": ["gs.log()", "GlideRecord", "gs.info()", "Both GlideRecord and gs.info()"], "answer": "Both GlideRecord and gs.info()"},
+{"numb": 34, "question": "What is the purpose of the 'Client' checkbox on a UI Action?", "options": ["To make the action run on the client-side", "To allow only clients to see the button", "To run the action on the Service Portal", "To bypass server-side validation"], "answer": "To make the action run on the client-side"},
+{"numb": 35, "question": "In Flow Designer, what is a 'Subflow'?", "options": ["A flow that only runs on mobile", "A reusable flow that can be called from other flows", "A flow with only one action", "A draft version of a flow"], "answer": "A reusable flow that can be called from other flows"},
+{"numb": 36, "question": "What is the correct way to initialize a GlideAjax call?", "options": ["new GlideAjax('script_include_name')", "gs.ajax('script_include_name')", "new AJAXProcessor()", "g_form.callAjax()"], "answer": "new GlideAjax('script_include_name')"},
+{"numb": 37, "question": "Which method is used to get the number of records in a GlideRecord query result?", "options": ["getCount()", "getRowCount()", "size()", "length"], "answer": "getRowCount()"},
+{"numb": 38, "question": "Which of the following is true for UI Policies?", "options": ["They execute after Business Rules", "They execute on the client-side", "They can only be used on the Incident table", "They require scripting for all actions"], "answer": "They execute on the client-side"},
+{"numb": 39, "question": "What is an 'Inbound Email Action'?", "options": ["A way to send emails from ServiceNow", "A script that processes incoming emails to perform actions in the instance", "A template for emails", "A security rule for email"], "answer": "A script that processes incoming emails to perform actions in the instance"},
+{"numb": 40, "question": "Which of the following is a valid ServiceNow table extension?", "options": ["The Task table", "The cmdb_ci table", "Any custom table can be extensible if configured", "All of the above"], "answer": "All of the above"},
+{"numb": 41, "question": "How do you enforce a Scoped application's security?", "options": ["Application Access settings", "ACLs", "Roles", "All of the above"], "answer": "All of the above"},
+{"numb": 42, "question": "What is 'Schema Map'?", "options": ["A way to design UI pages", "A visual representation of table relationships", "A database backup tool", "A script debugger"], "answer": "A visual representation of table relationships"},
+{"numb": 43, "question": "Which method is used to delete a record in GlideRecord?", "options": ["remove()", "deleteRecord()", "erase()", "drop()"], "answer": "deleteRecord()"},
+{"numb": 44, "question": "What is the 'Studio' used for?", "options": ["Designing reports", "Developing and managing all files for an application in one place", "Managing server hardware", "Recording videos"], "answer": "Developing and managing all files for an application in one place"},
+{"numb": 45, "question": "What is the purpose of the 'sys_dictionary' table?", "options": ["To store user profile data", "To store definitions for every table and field in the instance", "To store translated text", "To manage system properties"], "answer": "To store definitions for every table and field in the instance"}
+];
+
+const mock3Data = [
+{"numb": 1, "question": "Which method is used to set a value for a field in a Business Rule?", "options": ["g_form.setValue()", "current.setValue()", "current.field_name = 'value'", "Both current.setValue() and direct assignment"], "answer": "Both current.setValue() and direct assignment"},
+{"numb": 2, "question": "What is the correct way to handle a JSON response in a Script Include?", "options": ["JSON.parse()", "JSON.stringify()", "gs.getJSON()", "JSON.decode()"], "answer": "JSON.parse()"},
+{"numb": 3, "question": "Which method in GlideSystem is used to check if an application is active?", "options": ["gs.isActive()", "gs.isLive()", "gs.isApplicationActive()", "There is no such method in gs"], "answer": "There is no such method in gs"},
+{"numb": 4, "question": "What is a 'Spoke' in IntegrationHub?", "options": ["A hardware component", "A scoped application containing actions for a specific external system", "A UI component", "A type of database link"], "answer": "A scoped application containing actions for a specific external system"},
+{"numb": 5, "question": "What is the purpose of 'GlideAggregate'?", "options": ["To query a single record", "To perform database calculations like COUNT, SUM, and AVG efficiently", "To group users together", "To aggregate client-side logs"], "answer": "To perform database calculations like COUNT, SUM, and AVG efficiently"},
+{"numb": 6, "question": "Which tool provides a real-time log of background scripts and processes?", "options": ["JavaScript Debugger", "Script Tracer", "Stats.do", "App Log"], "answer": "Script Tracer"},
+{"numb": 7, "question": "What is the purpose of the 'AbstractAjaxProcessor' class?", "options": ["To manage UI pages", "To be extended by Client-callable Script Includes", "To perform heavy math on the server", "To process emails"], "answer": "To be extended by Client-callable Script Includes"},
+{"numb": 8, "question": "Which method in g_form is used to make a field read-only?", "options": ["setReadOnly('field', true)", "setDisabled('field', true)", "setMandatory('field', false)", "lockField('field')"], "answer": "setReadOnly('field', true)"},
+{"numb": 9, "question": "What are 'Data Policies'?", "options": ["Rules that only run on the client-side", "Rules that enforce data consistency at the database level", "A way to manage user passwords", "A tool for data encryption"], "answer": "Rules that enforce data consistency at the database level"},
+{"numb": 10, "question": "In Service Portal, what does the 'Server Script' of a widget do?", "options": ["Handles client-side clicks", "Fetches initial data from the database and processes input from the client", "Designs the CSS", "Routes the user to different pages"], "answer": "Fetches initial data from the database and processes input from the client"},
+{"numb": 11, "question": "Which table stores the records for all Update Sets?", "options": ["sys_update_set", "sys_update_xml", "sys_metadata", "sys_app"], "answer": "sys_update_set"},
+{"numb": 12, "question": "What is the purpose of the 'Display' field in the Table configuration?", "options": ["To show the table in the navigator", "To determine which field is shown when the table is referenced", "To enable a UI theme", "To set the table as active"], "answer": "To determine which field is shown when the table is referenced"},
+{"numb": 13, "question": "Which method is used in a Client Script to add an info message to a specific field?", "options": ["g_form.showFieldMsg()", "g_form.addInfoMessage()", "g_form.setError()", "alert()"], "answer": "g_form.showFieldMsg()"},
+{"numb": 14, "question": "What is an 'Access Control'?", "options": ["A password manager", "A security rule defined to restrict access to data", "A button on a form", "A way to manage user logins"], "answer": "A security rule defined to restrict access to data"},
+{"numb": 15, "question": "What is the difference between 'setAbortAction(true)' and 'return false' in a Business Rule?", "options": ["setAbortAction stops the current operation; return false is standard JS", "They are identical", "setAbortAction is for client scripts", "return false stops all scripts from running"], "answer": "setAbortAction stops the current operation; return false is standard JS"},
+{"numb": 16, "question": "Which of the following can be used to pass a message to the user from a server-side script?", "options": ["gs.addInfoMessage()", "gs.addErrorMessage()", "Both of the above", "None of the above"], "answer": "Both of the above"},
+{"numb": 17, "question": "What is the 'Event Registry'?", "options": ["A list of all users", "A list of all events that can be triggered in the system", "A database of all system logs", "A tool for managing tasks"], "answer": "A list of all events that can be triggered in the system"},
+{"numb": 18, "question": "In Flow Designer, what is a 'Trigger'?", "options": ["The result of an action", "An event that starts a flow", "A script include", "A user role"], "answer": "An event that starts a flow"},
+{"numb": 19, "question": "What is the 'Application Access' section of a table used for?", "options": ["To set user roles", "To control access from other application scopes", "To define ACLs", "To link tables together"], "answer": "To control access from other application scopes"},
+{"numb": 20, "question": "Which method is used to check if a field is empty in a Client Script?", "options": ["g_form.isEmpty('field')", "g_form.getValue('field') == ''", "current.field.nil()", "gs.nil('field')"], "answer": "g_form.getValue('field') == ''"},
+{"numb": 21, "question": "What is the purpose of the 'JavaScript Debugger'?", "options": ["To fix hardware issues", "To debug server-side scripts line by line", "To write new applications", "To manage user accounts"], "answer": "To debug server-side scripts line by line"},
+{"numb": 22, "question": "Which tool is used to monitor system performance like memory and CPU usage?", "options": ["Stats.do", "System Logs", "Studio", "UI Builder"], "answer": "Stats.do"},
+{"numb": 23, "question": "What is 'GlideRecord'?", "options": ["A UI component", "The primary class used for database operations in scripts", "A reporting tool", "A security rule"], "answer": "The primary class used for database operations in scripts"},
+{"numb": 24, "question": "Which of the following is true for Script Includes?", "options": ["They only run on the client-side", "They are reusable server-side script libraries", "They cannot use GlideRecord", "They must always extend a class"], "answer": "They are reusable server-side script libraries"},
+{"numb": 25, "question": "What is the purpose of 'UI Policies'?", "options": ["To manage database security", "To dynamically change the form UI based on conditions", "To write server-side code", "To design portal themes"], "answer": "To dynamically change the form UI based on conditions"},
+{"numb": 26, "question": "Which method in GlideRecord is used to get a single record using its sys_id?", "options": ["get()", "query()", "find()", "fetch()"], "answer": "get()"},
+{"numb": 27, "question": "What is a 'Spoke'?", "options": ["A type of integration hub component", "A user role", "A database link", "A UI element"], "answer": "A type of integration hub component"},
+{"numb": 28, "question": "Which table stores the definitions for all Scheduled Jobs?", "options": ["sys_trigger", "sys_scheduled_job", "sys_metadata", "sys_script"], "answer": "sys_trigger"},
+{"numb": 29, "question": "What is the 'Dictionary' used for?", "options": ["To store user profile data", "To define the structure of tables and fields", "To store system properties", "To manage system logs"], "answer": "To define the structure of tables and fields"},
+{"numb": 30, "question": "Which of the following is a key component of a Service Portal page?", "options": ["Widget", "Row", "Container", "All of the above"], "answer": "All of the above"},
+{"numb": 31, "question": "What is 'Delegated Development'?", "options": ["A way to allow non-admins to develop apps", "Hiring a developer", "Using AI to write code", "Moving code to production"], "answer": "A way to allow non-admins to develop apps"},
+{"numb": 32, "question": "Which method is used in a Business Rule to access the field values before the current change?", "options": ["current", "previous", "old", "original"], "answer": "previous"},
+{"numb": 33, "question": "What is an 'Import Set'?", "options": ["A way to export data", "A tool used to stage and transform data imported from external sources", "A database backup", "A script include"], "answer": "A tool used to stage and transform data imported from external sources"},
+{"numb": 34, "question": "Which class is used to interact with the ServiceNow server from a client script?", "options": ["GlideAjax", "GlideRecord", "GlideSystem", "GlideUser"], "answer": "GlideAjax"},
+{"numb": 35, "question": "What is the purpose of the 'sys_id'?", "options": ["To store user ID", "A unique identifier for every record in ServiceNow", "To store application ID", "A reference to a system table"], "answer": "A unique identifier for every record in ServiceNow"},
+{"numb": 36, "question": "Which tool would you use to create a custom Service Portal theme?", "options": ["Service Portal Configuration", "Studio", "UI Builder", "Workflow Editor"], "answer": "Service Portal Configuration"},
+{"numb": 37, "question": "What is the difference between 'insert()' and 'update()' in GlideRecord?", "options": ["insert creates a new record, update modifies existing", "update creates a new record, insert modifies", "They are identical", "insert is for client-side scripts"], "answer": "insert creates a new record, update modifies existing"},
+{"numb": 38, "question": "Which of the following is true for ACLs?", "options": ["They are only evaluated for admins", "They are evaluated in the order: Table-level, then Field-level", "They cannot use scripts", "They are only for the Incident table"], "answer": "They are evaluated in the order: Table-level, then Field-level"},
+{"numb": 39, "question": "What is 'Studio'?", "options": ["A reporting tool", "An integrated development environment (IDE) for building applications", "A database management tool", "A video editor"], "answer": "An integrated development environment (IDE) for building applications"},
+{"numb": 40, "question": "Which method is used to redirect a user to a different page in a server-side script?", "options": ["gs.setRedirect()", "g_form.redirect()", "current.redirect()", "response.sendRedirect()"], "answer": "gs.setRedirect()"},
+{"numb": 41, "question": "What is the purpose of the 'GlideSystem' API?", "options": ["To interact with the UI", "To perform system-level tasks and get session info on the server", "To manage database links", "To design portal themes"], "answer": "To perform system-level tasks and get session info on the server"},
+{"numb": 42, "question": "Which of the following can be used to debug a Business Rule?", "options": ["gs.info()", "JavaScript Debugger", "Script Tracer", "All of the above"], "answer": "All of the above"},
+{"numb": 43, "question": "What is the 'Scratchpad' used for?", "options": ["To store client side variables", "To pass data from server to client during form load", "To write temporary notes", "To debug GlideAjax calls"], "answer": "To pass data from server to client during form load"},
+{"numb": 44, "question": "Which method is used in g_form to set the value of a field?", "options": ["setValue()", "setProperty()", "updateValue()", "write()"], "answer": "setValue()"},
+{"numb": 45, "question": "Which table stores all the files for a Scoped application?", "options": ["sys_metadata", "sys_app", "sys_scope", "sys_package"], "answer": "sys_metadata"}
+];
+
+const otherMcqSet1Data = [
+{"question": "How do you extract data from a JSON response in a ServiceNow script?", "options": ["JSON.parse()", "JSON.decode()", "gs.getJSON()", "JSON.toObject()"], "answer": "JSON.parse()"},
+{"question": "What is the default order of evaluation for ACLs?", "options": ["Field-level, then Table-level", "Table-level, then Field-level", "Alphabetical", "Random"], "answer": "Table-level, then Field-level"},
+{"question": "Which of the following can trigger a Flow?", "options": ["Record updated", "Inbound Email", "Service Catalog item", "All of the above"], "answer": "All of the above"},
+{"question": "What is the purpose of a 'Spoke' in IntegrationHub?", "options": ["A physical network cable", "A set of pre-built actions for a third-party application", "A type of UI widget", "A security role"], "answer": "A set of pre-built actions for a third-party application"},
+{"question": "Which method is used in a Client Script to make a field mandatory?", "options": ["g_form.setMandatory('field', true)", "g_form.setRequired('field', true)", "current.field.mandatory = true", "UI Policies should be used instead"], "answer": "g_form.setMandatory('field', true)"},
+{"question": "What is 'Update Set'?", "options": ["A group of configuration changes that can be moved between instances", "A database backup", "A ServiceNow software update", "A list of users"], "answer": "A group of configuration changes that can be moved between instances"},
+{"question": "Which API allows you to get system properties?", "options": ["gs.getProperty()", "g_form.getProperty()", "GlideProperties.get()", "sys_properties.get()"], "answer": "gs.getProperty()"},
+{"question": "How do you uniquely identify a record in ServiceNow?", "options": ["sys_id", "number", "name", "record_id"], "answer": "sys_id"},
+{"question": "What is a 'Business Rule'?", "options": ["A script that runs on the client-side", "A script that runs when a record is displayed, inserted, updated, or deleted", "A set of user permissions", "A portal theme"], "answer": "A script that runs when a record is displayed, inserted, updated, or deleted"},
+{"question": "Which class is used for server-side database queries?", "options": ["GlideRecord", "GlideAjax", "GlideSystem", "GlideDB"], "answer": "GlideRecord"},
+{"question": "What is 'Scoped Application'?", "options": ["An application with a defined boundary to prevent conflicts", "A global application", "A mobile-only app", "A default system app"], "answer": "An application with a defined boundary to prevent conflicts"},
+{"question": "Which method is used to start a GlideRecord query?", "options": ["query()", "execute()", "get()", "fetch()"], "answer": "query()"},
+{"question": "What does ATF stand for?", "options": ["Automated Test Framework", "Advanced Task Flow", "Application Test Folder", "Automated Task Finder"], "answer": "Automated Test Framework"},
+{"question": "Which of the following is a client-side API?", "options": ["gs", "g_form", "current", "GlideRecord (server-side)"], "answer": "g_form"},
+{"question": "What is 'Flow Designer' used for?", "options": ["Creating UI pages", "Automating business processes without code", "Managing server hardware", "Designing reports"], "answer": "Automating business processes without code"},
+{"question": "Which method is used to add an error message to a form in a Client Script?", "options": ["g_form.addErrorMessage()", "gs.addErrorMessage()", "alert()", "console.error()"], "answer": "g_form.addErrorMessage()"},
+{"question": "What is the purpose of 'Studio'?", "options": ["To build and manage ServiceNow applications", "To edit photos", "To manage user passwords", "To view system logs"], "answer": "To build and manage ServiceNow applications"},
+{"question": "What is a 'Client Script'?", "options": ["A script that runs on the server", "A script that runs in the user's browser", "A database trigger", "An email template"], "answer": "A script that runs in the user's browser"},
+{"question": "Which method in GlideSystem gets the current user's name?", "options": ["gs.getUserName()", "gs.getName()", "g_user.userName", "current.user_name"], "answer": "gs.getUserName()"},
+{"question": "What is 'ACL'?", "options": ["Access Control List", "Application Code Library", "Advanced Command Language", "Automated Connection Link"], "answer": "Access Control List"},
+{"question": "Which of the following is true for Script Includes?", "options": ["They are client-side only", "They are reusable server-side scripts", "They are used for portal themes", "They cannot use GlideRecord"], "answer": "They are reusable server-side scripts"},
+{"question": "How do you call GlideAjax?", "options": ["var ga = new GlideAjax('ScriptIncludeName');", "gs.callAjax('ScriptIncludeName');", "g_form.ajax('ScriptIncludeName');", "AJAX.run('ScriptIncludeName');"], "answer": "var ga = new GlideAjax('ScriptIncludeName');"},
+{"question": "What is 'Service Portal'?", "options": ["A backend admin interface", "A user-friendly interface for end users to interact with ServiceNow", "A database management tool", "An integration hub"], "answer": "A user-friendly interface for end users to interact with ServiceNow"},
+{"question": "Which method is used to insert a record via GlideRecord?", "options": ["insert()", "save()", "update()", "add()"], "answer": "insert()"},
+{"question": "What is the purpose of 'UI Policy'?", "options": ["To manage server-side security", "To control the visibility and mandatory state of form fields dynamically", "To create new tables", "To design mobile apps"], "answer": "To control the visibility and mandatory state of form fields dynamically"},
+{"question": "Which field on a table identifies the application it belongs to?", "options": ["sys_scope", "sys_app", "application_id", "package_name"], "answer": "sys_scope"},
+{"question": "What is 'GlideSystem' used for?", "options": ["UI interaction", "Server-side system tasks and session info", "Database indexing", "Portal widgets"], "answer": "Server-side system tasks and session info"},
+{"question": "Which tool would you use to create a custom Scripted REST API?", "options": ["Scripted REST APIs module", "Workflow Editor", "Flow Designer", "UI Builder"], "answer": "Scripted REST APIs module"},
+{"question": "What is 'Record Producer'?", "options": ["A way to create records via a catalog-like interface", "A tool for bulk data import", "A type of database trigger", "A system property"], "answer": "A way to create records via a catalog-like interface"},
+{"question": "How do you check if a record is new in a Business Rule?", "options": ["current.isNewRecord()", "current.isNew()", "current.insert() == true", "gs.isNewRecord()"], "answer": "current.isNewRecord()"}
+];
+
+const otherMcqSet2Data = [
+{"question": "Which method is used in a Client Script to get a value from a form field?", "options": ["g_form.getValue()", "g_form.getField()", "current.getValue()", "gs.getValue()"], "answer": "g_form.getValue()"},
+{"question": "Where are global system logs stored?", "options": ["sys_log", "sys_metadata", "sys_event", "sys_audit"], "answer": "sys_log"},
+{"question": "What is the purpose of 'Dictionary Override'?", "options": ["To change field properties on a child table without affecting the parent", "To rename a table", "To delete a field", "To override user permissions"], "answer": "To change field properties on a child table without affecting the parent"},
+{"question": "Which tool allows you to build applications visually with minimal coding?", "options": ["App Engine Studio", "Flow Designer", "Service Portal", "Workflow Editor"], "answer": "App Engine Studio"},
+{"question": "What language is used for Service Portal widget templates?", "options": ["HTML/CSS", "PHP", "Ruby", "Python"], "answer": "HTML/CSS"},
+{"question": "What does 'gs.addInfoMessage()' do?", "options": ["Logs a message to the system log", "Displays a blue info message to the user at the top of the screen", "Sends an email", "Displays a popup alert"], "answer": "Displays a blue info message to the user at the top of the screen"},
+{"question": "Which table stores all the users in ServiceNow?", "options": ["sys_user", "sys_metadata", "sys_app", "sys_dictionary"], "answer": "sys_user"},
+{"question": "What is 'IntegrationHub'?", "options": ["A tool for connecting ServiceNow to other systems", "A reporting tool", "A UI designer", "A database link"], "answer": "A tool for connecting ServiceNow to other systems"},
+{"question": "Which of the following is true for UI Actions?", "options": ["They are only for admins", "They can be form buttons, links, or context menu items", "They cannot run scripts", "They are only for the Service Portal"], "answer": "They can be form buttons, links, or context menu items"},
+{"question": "What is 'GlideAjax' used for?", "options": ["Client-to-server communication", "Server-to-client communication", "Database queries", "Designing forms"], "answer": "Client-to-server communication"},
+{"question": "Which method in GlideRecord gets the sys_id of the current record?", "options": ["getUniqueValue()", "getSysId()", "getId()", "getGuid()"], "answer": "getUniqueValue()"},
+{"question": "What is 'ServiceNow Studio'?", "options": ["A tool for building and managing applications", "A photo editor", "A video editor", "A music app"], "answer": "A tool for building and managing applications"},
+{"question": "Which method is used to check if a user has a role in a Client Script?", "options": ["g_user.hasRole()", "gs.hasRole()", "g_form.hasRole()", "current.hasRole()"], "answer": "g_user.hasRole()"},
+{"question": "What is 'ACL' primarily used for?", "options": ["Security and access control", "UI design", "Reporting", "Database backups"], "answer": "Security and access control"},
+{"question": "Which tool would you use to automate a series of tasks triggered by a record update?", "options": ["Flow Designer", "UI Policy", "Client Script", "Report Designer"], "answer": "Flow Designer"},
+{"question": "What is 'Update Set' primarily used for?", "options": ["Moving configurations between instances", "Updating ServiceNow version", "Backing up data", "Managing users"], "answer": "Moving configurations between instances"},
+{"question": "Which method is used to display an error message on a form field in a Client Script?", "options": ["g_form.showFieldMsg('field', 'msg', 'error')", "g_form.setError('field', 'msg')", "alert('error')", "gs.error('msg')"], "answer": "g_form.showFieldMsg('field', 'msg', 'error')"},
+{"question": "What is 'Scoped Application'?", "options": ["An application with its own namespace to avoid conflicts", "A global app", "A legacy app", "A default system app"], "answer": "An application with its own namespace to avoid conflicts"},
+{"question": "Which method is used in a Business Rule to abort a database operation?", "options": ["current.setAbortAction(true)", "current.stop()", "gs.abort()", "return false"], "answer": "current.setAbortAction(true)"},
+{"question": "What is 'GlideRecord'?", "options": ["A class for interacting with the database", "A UI element", "A reporting tool", "A user role"], "answer": "A class for interacting with the database"},
+{"question": "Where are business rule scripts executed?", "options": ["On the server", "In the browser", "On the local machine", "In the cloud"], "answer": "On the server"},
+{"question": "What is the primary function of 'UI Policy'?", "options": ["To make fields mandatory/visible/read-only on a form", "To secure the database", "To create new records", "To design portal pages"], "answer": "To make fields mandatory/visible/read-only on a form"},
+{"question": "Which of the following is NOT a ServiceNow exam topic?", "options": ["Scripting", "Application Scoping", "Integrations", "Hardware manufacturing"], "answer": "Hardware manufacturing"},
+{"question": "What does 'JSON.stringify()' do?", "options": ["Converts a JavaScript object to a JSON string", "Converts a JSON string to an object", "Encrypts a string", "None of the above"], "answer": "Converts a JavaScript object to a JSON string"},
+{"question": "Which class is used to get session information in a server-side script?", "options": ["gs", "g_user", "GlideSession", "current.session"], "answer": "gs"},
+{"question": "What is 'Record Producer' used for?", "options": ["Creating records on a specific table from the Service Catalog", "Producing music", "Bulk data import", "System logs"], "answer": "Creating records on a specific table from the Service Catalog"},
+{"question": "Which method is used in GlideRecord to retrieve the next record in a result set?", "options": ["next()", "fetch()", "get()", "move()"], "answer": "next()"},
+{"question": "What is 'GlideAjax'?", "options": ["A class for making asynchronous calls from client to server", "A database engine", "A UI designer", "A mobile app feature"], "answer": "A class for making asynchronous calls from client to server"},
+{"question": "Where do you configure 'Application Access' for a table?", "options": ["In the Table definition record", "In the ACL", "In the Role record", "In the Scope record"], "answer": "In the Table definition record"},
+{"question": "What is the purpose of 'sys_metadata' table?", "options": ["To store all configuration records for applications", "To store user data", "To store system logs", "To store system properties"], "answer": "To store all configuration records for applications"}
+];
 
 let currentQuizData = [];
 let currentQuestionIndex = 0;
@@ -269,9 +476,8 @@ let userAnswers = {};
 let timerInterval;
 let quizReviewMode = false;
 let bookmarkedQuestions = [];
-let incorrectQuestions = []; // Stores the question objects that were answered wrongly
+let incorrectQuestions = [];
 
-// Load bookmarks
 if(localStorage.getItem('sn_bookmarks')) {
     bookmarkedQuestions = JSON.parse(localStorage.getItem('sn_bookmarks'));
 }
@@ -284,7 +490,7 @@ function startQuiz(testId) {
     else if(testId === 'other1') rawData = otherMcqSet1Data;
     else if(testId === 'other2') rawData = otherMcqSet2Data;
 
-    // IMPORTANT: Deep clone the data and strip any 'locked' status from previous attempts
+    // Deep clone the data and reset interactive state
     currentQuizData = rawData.map(q => ({
         ...q,
         locked: false,
@@ -307,35 +513,21 @@ function resetQuizState() {
     score = 0;
     userAnswers = {};
     quizReviewMode = false;
-    incorrectQuestions = []; // Reset the "current session's" mistakes
-
+    incorrectQuestions = [];
     document.getElementById('dashboard-view').classList.add('hidden');
     document.getElementById('quiz-view').classList.remove('hidden');
     document.getElementById('study-view').classList.add('hidden');
     document.getElementById('results-modal').classList.add('hidden');
 }
 
-/**
- * FIXED RETAKE LOGIC
- */
 function startRetakeIncorrect() {
     if (incorrectQuestions.length === 0) return;
-
-    // 1. Deep clone the incorrect questions and explicitly reset 'locked' state
-    currentQuizData = incorrectQuestions.map(q => ({
-        ...q,
-        locked: false 
-    }));
-
-    // 2. Reset the incorrect list for the NEW attempt
+    currentQuizData = incorrectQuestions.map(q => ({ ...q, locked: false }));
     incorrectQuestions = []; 
-    
-    // 3. Reset UI and counters
     currentQuestionIndex = 0;
     score = 0;
     userAnswers = {};
     quizReviewMode = false;
-
     document.getElementById('results-modal').classList.add('hidden');
     updateProgressBar();
     startTimer(45 * 60);
@@ -345,35 +537,27 @@ function startRetakeIncorrect() {
 function loadQuestion() {
     const q = currentQuizData[currentQuestionIndex];
     const isMultiSelect = Array.isArray(q.answer);
-
     document.getElementById('q-progress').innerText = `Q ${currentQuestionIndex + 1}/${currentQuizData.length}`;
     document.getElementById('score-display').innerText = quizReviewMode ? "Review Mode" : `Score: ${score} / ${currentQuizData.length}`;
-
     updateProgressBar();
-
     const bookmarkBtn = document.getElementById('bookmark-btn');
     const isBookmarked = bookmarkedQuestions.includes(q.question);
     bookmarkBtn.classList.toggle('bookmarked', isBookmarked);
     bookmarkBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="${isBookmarked ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>`;
-
     let qText = q.question.replace(/\n/g, '<br>');
     if (isMultiSelect) qText += "<br><small style='color:var(--brand-green);'>(Select all that apply)</small>";
     document.getElementById('question-text').innerHTML = qText;
-
     const optionsDiv = document.getElementById('options-container');
     optionsDiv.innerHTML = '';
-
     q.options.forEach((opt, idx) => {
         const btn = document.createElement('div');
         btn.className = 'option-item';
         btn.innerHTML = `<span>${opt}</span> <span class="key-hint">${idx+1}</span>`;
-
         if (quizReviewMode) {
             btn.style.pointerEvents = 'none';
             const correctArr = isMultiSelect ? q.answer : [q.answer];
-            const userSelection = userAnswers[currentQuestionIndex];
             if (correctArr.includes(opt)) btn.classList.add('correct');
-            else if (isMultiSelect ? userSelection?.includes(opt) : userSelection === opt) btn.classList.add('wrong');
+            else if (isMultiSelect ? userAnswers[currentQuestionIndex]?.includes(opt) : userAnswers[currentQuestionIndex] === opt) btn.classList.add('wrong');
         } else {
             btn.onclick = () => handleOptionClick(btn, opt, q.answer, isMultiSelect);
             if (q.locked) {
@@ -387,10 +571,7 @@ function loadQuestion() {
         }
         optionsDiv.appendChild(btn);
     });
-
-    const subBtn = document.getElementById('submit-btn');
-    subBtn.style.display = (!quizReviewMode && isMultiSelect && !q.locked) ? 'block' : 'none';
-    
+    document.getElementById('submit-btn').style.display = (!quizReviewMode && isMultiSelect && !q.locked) ? 'block' : 'none';
     document.querySelector('.prev').disabled = currentQuestionIndex === 0;
     const nextBtn = document.querySelector('.next');
     nextBtn.innerText = (currentQuestionIndex === currentQuizData.length - 1) ? (quizReviewMode ? "Exit Review" : "Finish Quiz") : "Next";
@@ -399,7 +580,6 @@ function loadQuestion() {
 function handleOptionClick(elem, selectedOpt, correctAns, isMulti) {
     const q = currentQuizData[currentQuestionIndex];
     if (q.locked) return;
-
     if (isMulti) {
         if (!userAnswers[currentQuestionIndex]) userAnswers[currentQuestionIndex] = [];
         let current = userAnswers[currentQuestionIndex];
@@ -418,17 +598,11 @@ function handleOptionClick(elem, selectedOpt, correctAns, isMulti) {
             elem.classList.add('correct');
         } else {
             elem.classList.add('wrong');
-            // Track mistake for retake
             incorrectQuestions.push({...q});
-            
-            // Show correct answer
             const allOpts = document.querySelectorAll('.option-item');
-            allOpts.forEach(o => {
-                if (o.innerText.includes(correctAns)) o.classList.add('correct');
-            });
+            allOpts.forEach(o => { if (o.innerText.includes(correctAns)) o.classList.add('correct'); });
         }
-        document.getElementById('score-display').innerText = `Score: ${score} / ${currentQuizData.length}`;
-        setTimeout(nextQuestion, 1000);
+        setTimeout(nextQuestion, 1200);
     }
 }
 
@@ -437,14 +611,8 @@ function submitMultiAnswer() {
     const userAns = userAnswers[currentQuestionIndex] || [];
     const correctAns = q.answer;
     q.locked = true;
-
     const isCorrect = userAns.length === correctAns.length && userAns.every(v => correctAns.includes(v));
-
-    if (isCorrect) {
-        score++;
-    } else {
-        incorrectQuestions.push({...q});
-    }
+    if (isCorrect) score++; else incorrectQuestions.push({...q});
     loadQuestion();
 }
 
@@ -453,27 +621,18 @@ function nextQuestion() {
         currentQuestionIndex++;
         loadQuestion();
     } else {
-        if (quizReviewMode) location.reload();
-        else finishQuiz();
+        if (quizReviewMode) location.reload(); else finishQuiz();
     }
 }
 
-function prevQuestion() {
-    if (currentQuestionIndex > 0) {
-        currentQuestionIndex--;
-        loadQuestion();
-    }
-}
+function prevQuestion() { if (currentQuestionIndex > 0) { currentQuestionIndex--; loadQuestion(); } }
 
 function finishQuiz() {
     clearInterval(timerInterval);
     const percentage = Math.round((score / currentQuizData.length) * 100);
     document.getElementById('final-score').innerText = `${percentage}%`;
-    document.getElementById('final-msg').innerText = percentage >= 70 ? "Great job! You passed!" : "Keep studying, you'll get it next time!";
-    
-    // Toggle the retake button visibility based on mistakes
+    document.getElementById('final-msg').innerText = percentage >= 70 ? "Great job! You passed!" : "Keep studying!";
     document.getElementById('retake-incorrect-btn').style.display = incorrectQuestions.length > 0 ? 'block' : 'none';
-    
     if (percentage >= 70) triggerConfetti();
     document.getElementById('results-modal').classList.remove('hidden');
 }
@@ -518,32 +677,25 @@ function toggleBookmark() {
     loadQuestion();
 }
 
-// Confetti Helper
 function triggerConfetti() {
     const canvas = document.getElementById('confetti-canvas');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    const confetti = Array.from({length: 150}, () => ({
+    const particles = Array.from({length: 100}, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height - canvas.height,
-        size: Math.random() * 8 + 4,
-        speed: Math.random() * 3 + 2,
-        color: `hsl(${Math.random() * 360}, 70%, 60%)`
+        v: Math.random() * 2 + 2,
+        c: `hsl(${Math.random() * 360}, 70%, 60%)`
     }));
-    function frame() {
-        ctx.clearRect(0,0, canvas.width, canvas.height);
-        confetti.forEach(c => {
-            c.y += c.speed;
-            ctx.fillStyle = c.color;
-            ctx.fillRect(c.x, c.y, c.size, c.size);
-        });
-        if (confetti.some(c => c.y < canvas.height)) requestAnimationFrame(frame);
+    function draw() {
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        particles.forEach(p => { p.y += p.v; ctx.fillStyle = p.c; ctx.fillRect(p.x, p.y, 5, 5); });
+        requestAnimationFrame(draw);
     }
-    frame();
+    draw();
 }
 
-// Study Mode Search
 function filterStudyQuestions() {
     const filter = document.getElementById('study-search').value.toLowerCase();
     document.querySelectorAll('.study-question-block').forEach(block => {
@@ -560,11 +712,12 @@ function setupStudyView(data) {
     container.innerHTML = data.map((q, idx) => `
         <div class="study-question-block">
             <h3 class="study-question-title">Q${idx+1}. ${q.question}</h3>
-            ${q.options.map(opt => `
-                <div class="study-option ${Array.isArray(q.answer) ? (q.answer.includes(opt) ? 'correct-answer' : '') : (opt === q.answer ? 'correct-answer' : '')}">
-                    ${Array.isArray(q.answer) ? (q.answer.includes(opt) ? '✅ ' : '') : (opt === q.answer ? '✅ ' : '')} ${opt}
-                </div>
-            `).join('')}
+            ${q.options.map(opt => {
+                const isCorrect = Array.isArray(q.answer) ? q.answer.includes(opt) : opt === q.answer;
+                return `<div class="study-option ${isCorrect ? 'correct-answer' : ''}">
+                    ${isCorrect ? '✅ ' : ''} ${opt}
+                </div>`;
+            }).join('')}
         </div>
     `).join('');
 }
